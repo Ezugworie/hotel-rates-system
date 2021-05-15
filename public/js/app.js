@@ -48799,7 +48799,6 @@ function genDirectives (el, state) {
   }
 }
 
-/***/ }),
 function genInlineTemplate (el, state) {
   var ast = el.children[0];
   if ( true && (
@@ -48816,11 +48815,6 @@ function genInlineTemplate (el, state) {
   }
 }
 
-/***/ "./resources/js/bootstrap.js":
-/*!***********************************!*\
-  !*** ./resources/js/bootstrap.js ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 function genScopedSlots (
   el,
   slots,
@@ -48840,12 +48834,6 @@ function genScopedSlots (
     )
   });
 
-window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
   // #9534: if a component with scoped slots is inside a conditional branch,
   // it's possible for the same component to be reused but with different
   // compiled slot content. To avoid that, we generate a unique key based on
@@ -49552,23 +49540,10 @@ Vue.prototype.$mount = function (
   return mount.call(this, el, hydrating)
 };
 
-window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
  * Get outerHTML of elements, taking care
  * of SVG elements in IE as well.
  */
-// import Echo from 'laravel-echo';
-// window.Pusher = require('pusher-js');
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     forceTLS: true
-// });
 function getOuterHTML (el) {
   if (el.outerHTML) {
     return el.outerHTML
@@ -49579,7 +49554,6 @@ function getOuterHTML (el) {
   }
 }
 
-/***/ }),
 Vue.compile = compileToFunctions;
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Vue);
