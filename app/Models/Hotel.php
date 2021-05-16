@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Hotel extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'stars',
+        'address',
+    ];
+
+
+    public function rates()
+    {
+      return $this->hasMany(Rate::class);
+    }
 }
