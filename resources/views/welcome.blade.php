@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Hotel Rates System</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -59,6 +59,8 @@
                                 </div>
                             </div>
                         </div>
+
+
 
                         <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
                             <div class="flex items-center">
@@ -121,6 +123,8 @@
                             </a>
                         </div>
                     </div>
+                    <example-component/>
+
 
                     <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
                         Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
@@ -128,5 +132,7 @@
                 </div>
             </div>
         </div>
+        <script src="js/app.js"></script>
+
     </body>
 </html>
