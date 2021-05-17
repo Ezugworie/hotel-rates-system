@@ -2,8 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import UserHome from './components/UserHome.vue'
 import AdminHome from './components/AdminHome.vue'
-import Home from './components/hotels/Home.vue'
+import Hotel from './components/hotels/Home.vue'
 import Setup from './components/hotels/Setup.vue'
+import Rates from './components/hotels/Rates.vue'
 
 
 Vue.use(Router)
@@ -21,13 +22,17 @@ export default new Router({
       children: [
         {
           path: '',
-          component: Home,
+          component: Hotel,
           children: [
             {
               path: '',
               component: Setup,
             },
           ]
+        },
+        {
+          path: 'hotel-rate',
+          component: Rates,
         },
         
       ]

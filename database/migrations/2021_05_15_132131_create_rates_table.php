@@ -15,6 +15,7 @@ class CreateRatesTable extends Migration
     {
         Schema::create('rates', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('hotel_id');
             $table->timestamp('start_date')->nullable();;
             $table->timestamp('end_date')->nullable();;
             $table->decimal('adult_rate', 10, 2);
