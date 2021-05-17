@@ -2145,14 +2145,17 @@ __webpack_require__.r(__webpack_exports__);
       this.creatingHotelMode = false;
     },
     deleteHotels: function deleteHotels(id) {
+      var _this3 = this;
+
       this.$swal({
         title: 'Confirm!',
         text: 'Sure to delete this Hotel?',
         icon: 'info',
         confirmButtonText: 'Delete please'
-      }); // axios.delete(`/api/hotels/${id}`).then(() => {
-      //   this.fetchHotels()
-      // })
+      });
+      axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/hotels/".concat(id)).then(function () {
+        _this3.fetchHotels();
+      });
     }
   },
   mounted: function mounted() {

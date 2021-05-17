@@ -213,9 +213,9 @@ export default {
         icon: 'info',
         confirmButtonText: 'Delete please'
       })
-      // axios.delete(`/api/hotels/${id}`).then(() => {
-      //   this.fetchHotels()
-      // })
+      axios.delete(`/api/hotels/${id}`).then(() => {
+        this.fetchHotels()
+      })
     },
     
   },
