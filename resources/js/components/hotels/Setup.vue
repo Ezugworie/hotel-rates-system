@@ -81,6 +81,10 @@
           Update
         </button>
       </form>
+
+      <div class="mt-5 justify-start flex w-2/5">
+        <router-link to="/home/hotel-rate" class="text-left underline uppercase">Go to Rates</router-link>
+      </div>
     </div>
 
      <div class="w-full md:w-1/2 flex flex-col justify-center items-center">
@@ -92,7 +96,10 @@
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-              <table class="min-w-full divide-y divide-gray-200">
+              <skeleton v-show="loading" :repeat="4" />
+
+
+                <table v-show="!loading" class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                   <tr>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -128,7 +135,8 @@
                     </td>
                     
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex flex-row justify-between">
-                      <span @click="editHotels(hotel)" class="text-gray-400 hover:text-gray-900 hover:underline cursor-pointer">Edit</span>
+                      <span @click="goToRates(hotel)" class="text-gray-400 hover:text-gray-900 hover:underline cursor-pointer">Rates</span>
+                      <span @click="editHotels(hotel)" class="text-blue-500 hover:text-blue-900 hover:underline cursor-pointer">Edit Hotel</span>
                       <span @click="deleteHotels(hotel.id)" class="text-red-500 hover:text-red-600 hover:underline cursor-pointer">Delete</span>
                     </td>
                   </tr>
@@ -149,15 +157,19 @@
 import { hotelObj } from '../utils/index.js'
 import axios from 'axios'
 import Swal from 'sweetalert2'
-
+import Skeleton from '../shared/tableSkeleton'
 
 
 export default {
+  components: {
+    Skeleton
+  },
   data() {
     return {
       newHotel: hotelObj,
       hotels: [],
       creatingHotelMode: true,
+      loading: false
       
     }
   },
@@ -193,10 +205,13 @@ export default {
      
     fetchHotels: function() {
       console.log("Fetching")
+      this.loading = true;
       axios.get('/api/hotels')
            .then(response => {
              console.log(response.data)
               this.hotels = response.data
+             this.loading = false;
+
             })
     },
 
@@ -208,16 +223,33 @@ export default {
 
     deleteHotels: function(id) {
       this.$swal({
-        title: 'Confirm!',
-        text: 'Sure to delete this Hotel?',
-        icon: 'info',
-        confirmButtonText: 'Delete please'
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            axios.delete(`/api/hotels/${id}`).then(() => {
+            this.fetchHotels()
+          })
+          Swal.fire(
+            'Deleted!',
+            'Hotel has been deleted.',
+            'success'
+          )
+        }
       })
-      // axios.delete(`/api/hotels/${id}`).then(() => {
-      //   this.fetchHotels()
-      // })
+      
     },
-    
+
+    goToRates: function(hotel) {
+      localStorage.setItem('hotel-key', hotel)
+      this.$router.push('/home/hotel-rate');
+    },
+
   },
   mounted() {
     this.fetchHotels()
