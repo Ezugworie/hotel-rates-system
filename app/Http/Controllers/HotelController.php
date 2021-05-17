@@ -7,12 +7,6 @@ use App\Models\Hotel;
 
 class HotelController extends Controller
 {
-    
-    public function __construct()
-    {
-      $this->middleware('auth')->except(['index', 'show']);
-    }
-
 
     /**
      * Display a listing of the resource.
@@ -35,15 +29,16 @@ class HotelController extends Controller
 
         $this->validate($request, [
             'name' => 'required',
-            'star' => 'required',
+            'stars' => 'required',
         ]);
   
-        $hotel = new Hotel;
-        $hotel->title = $request->input('name'); 
-        $hotel->description = $request->input('start');  
-        $hotel->description = $request->input('address');  
+        $hotel = new Hotel([
+            'name' => $request->get('name'),
+            'stars' => $request->get('stars'),
+            'address' => $request->get('address'),
+        ]);
         $hotel->save(); 
-        return response()->json(['message' => 'HOtel Added', 'Hotel' => $hotel]);
+        return response()->json(['message' => 'Hotel Added', 'Hotel' => $hotel]);
  
     }
 

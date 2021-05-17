@@ -6,7 +6,7 @@
 <template>
   <div class="w-full flex flex-row ">
     <div class="w-1/2 flex flex-col justify-center items-center border-r">
-      <setup></setup>
+      <setup v-on:hotel-created="fetchHotels()"></setup>
     </div>
     <div class="w-full md:w-1/2 flex flex-col justify-center items-center">
       <span class="text-lg font-medium uppercase self-center my-5 text-gray-500">Hotels</span>
@@ -68,38 +68,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Setup from './Setup.vue'
 import Edit from './Edit.vue'
+import axios from 'axios'
 
-const hotels = [
-  {
-    name: 'Jane Cooper',
-    stars: 'Regional Paradigm Technician',
-    address: 'Optimization',
-  },
-  {
-    name: 'Jane Cooper',
-    stars: 'Regional Paradigm Technician',
-    address: 'Optimization',
-  },
-  {
-    name: 'Jane Cooper',
-    stars: 'Regional Paradigm Technician',
-    address: 'Optimization',
-  },
-  {
-    name: 'Jane Cooper',
-    stars: 'Regional Paradigm Technician',
-    address: 'Optimization',
-  },
-  {
-    name: 'Jane Cooper',
-    stars: 'Regional Paradigm Technician',
-    address: 'Optimization',
-  },
-  
-]
 
 export default {
   components: {
@@ -107,11 +80,30 @@ export default {
   },
   data() {
     return {
-      hotels
+      hotels: [],
     }
   },
-  mounted() {
-    console.log('Index mounted')
+  methods: {
+    fetchHotels: function() {
+      console.log("Fetching")
+      axios.get('/api/hotels')
+           .then(response => {
+             console.log(response.data)
+              this.hotels = response.data
+            })
+    },
   },
+  mounted() {
+    this.fetchHotels()
+    console.log('Hotel Home mounted')
+  },
+  watch: {
+    hotels: {
+      handler: (newHotels, oldHotels) => {
+        console.log("Title changed from " + oldHotels + " to " + newHotels)
+      },
+      immediate: true
+    }
+},
 }
 </script>

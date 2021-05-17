@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
 
 class HotelSeeder extends Seeder
 {
@@ -13,6 +15,12 @@ class HotelSeeder extends Seeder
      */
     public function run()
     {
-        //
+
+        DB::table("hotels")->insert([
+            'name'=>'Transcorp Hilton',
+            'stars'=>3,
+            'address'=>'Maitama Abuja Nigeria',
+        ]);
+
     }
 }

@@ -10,7 +10,7 @@
               required
               type="text" 
               name="name" 
-              v-model="hotelData.name"
+              v-model="newHotel.name"
               class="focus:outline-none 
                     focus:ring ring-gray-200 border border-2 
                     rounded-md w-full p-2"
@@ -25,16 +25,16 @@
               required
               type="" 
               name="name" 
-              v-model="hotelData.stars"
+              v-model="newHotel.stars"
               class="focus:outline-none
                     focus:ring ring-gray-200 border border-2 
                     rounded-md w-full p-2"
             >
                 <option disabled selected value="" class="text-gray-400">Please select one</option>
-                <option>3 Stars</option>
-                <option>4 Stars</option>
-                <option>5 Stars</option>
-                <option>7 Stars</option>
+                <option value="3">3 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="5">5 Stars</option>
+                <option value="7">7 Stars</option>
             </select>
           </div>
         </div>
@@ -45,9 +45,9 @@
           <div>
             <textarea 
               name="address" 
-              value=""
+              v-model="newHotel.address"
               class="focus:outline-none 
-                    focus:ring ring-gray-200 border border-2 
+                    focus:ring ring-gray-200 border-2 
                     rounded-md w-full p-2"
               rows="5"
             ></textarea>
@@ -73,21 +73,36 @@
 
 <script>
 import { hotelObj } from '../utils/index.js'
+import axios from 'axios'
+
 
 export default {
   data() {
     return {
-      hotelData: hotelObj
+      newHotel: hotelObj,
+      
     }
   },
   methods: {
-    createHotel() {
-        console.log(this.hotelData)
-    },
+    createHotel: function() {
+      axios.post('/api/hotels', {
+        "name": this.newHotel.name,
+        "stars": this.newHotel.stars,
+        "address": this.newHotel.address
+      }).then(response => {
+             console.log(response.data)
+             this.$emit('hotel-created')
+
+              // this.hotels = response.data
+              console.log("HOTELS RESPONSE ==>  "+JSON.stringify(response));
+      })
+    }
+    
   },
   mounted() {
             console.log('HOtel Component mounted.')
-            console.log('HOtel object imported.  '+ this.hotelData.name)
+            console.log('HOtel object imported.  '+ this.newHotel.name)
+            // this.fetchHotels()
         }
 }
 </script>
