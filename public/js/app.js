@@ -1894,9 +1894,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Setup_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Setup.vue */ "./resources/js/components/hotels/Setup.vue");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -1938,6 +1935,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/format/index.js");
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/parseISO/index.js");
 /* harmony import */ var _shared_tableSkeleton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shared/tableSkeleton */ "./resources/js/components/shared/tableSkeleton.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2407,6 +2425,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2428,11 +2469,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       if (this.creatingHotelMode) {
-        axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/hotels', {
-          "name": this.newHotel.name,
-          "stars": this.newHotel.stars,
-          "address": this.newHotel.address
-        }).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/hotels', this.$data.newHotel).then(function (response) {
           console.log(response.data);
 
           _this.fetchHotels();
@@ -2442,11 +2479,7 @@ __webpack_require__.r(__webpack_exports__);
           console.log("HOTELS RESPONSE ==>  " + JSON.stringify(response));
         });
       } else {
-        axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/hotels/".concat(this.newHotel.id), {
-          "name": this.newHotel.name,
-          "stars": this.newHotel.stars,
-          "address": this.newHotel.address
-        }).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/hotels/".concat(this.newHotel.id), this.$data.newHotel).then(function (response) {
           console.log(response.data);
 
           _this.fetchHotels();
@@ -14162,7 +14195,7 @@ var render = function() {
                     required: "",
                     type: "date",
                     name: "startDate",
-                    min: _vm.today
+                    min: _vm.newRate.start_date
                   },
                   domProps: { value: _vm.newRate.start_date },
                   on: {
@@ -14367,15 +14400,47 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "mt-5 justify-start flex w-2/5" },
+          {
+            staticClass:
+              "mt-5 justify-start flex w-2/5 text-gray-600 hover:underline"
+          },
           [
             _c(
               "router-link",
               {
-                staticClass: "text-left underline uppercase",
+                staticClass:
+                  "text-left  uppercase flex font-semibold items-center",
                 attrs: { to: "/home" }
               },
-              [_vm._v("Go to Hotels")]
+              [
+                _c("span", [_vm._v("Go to Hotels")]),
+                _vm._v(" "),
+                _c("span", [
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "h-6 w-6",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        fill: "none",
+                        viewBox: "0 0 24 24",
+                        stroke: "currentColor"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          "stroke-linecap": "round",
+                          "stroke-linejoin": "round",
+                          "stroke-width": "2",
+                          d:
+                            "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                        }
+                      })
+                    ]
+                  )
+                ])
+              ]
             )
           ],
           1
@@ -14459,48 +14524,42 @@ var render = function() {
                                       staticClass: "px-6 py-4 whitespace-nowrap"
                                     },
                                     [
-                                      _c(
-                                        "div",
-                                        { staticClass: "flex items-center" },
-                                        [
-                                          _c("div", { staticClass: "ml-4" }, [
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "text-sm font-medium text-gray-800"
-                                              },
-                                              [
-                                                _vm._v(
-                                                  "\n                          " +
-                                                    _vm._s(
-                                                      _vm.formatDate(
-                                                        rate.start_date
-                                                      )
-                                                    ) +
-                                                    " "
-                                                ),
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "font-normal"
-                                                  },
-                                                  [_vm._v("-")]
-                                                ),
-                                                _vm._v(
-                                                  " " +
-                                                    _vm._s(
-                                                      _vm.formatDate(
-                                                        rate.end_date
-                                                      )
-                                                    ) +
-                                                    "\n                        "
-                                                )
-                                              ]
-                                            )
-                                          ])
-                                        ]
-                                      )
+                                      _c("div", { staticClass: "flex" }, [
+                                        _c("div", [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "text-sm font-medium text-gray-800"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                          " +
+                                                  _vm._s(
+                                                    _vm.formatDate(
+                                                      rate.start_date
+                                                    )
+                                                  ) +
+                                                  " "
+                                              ),
+                                              _c(
+                                                "span",
+                                                { staticClass: "font-light" },
+                                                [_vm._v("--")]
+                                              ),
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(
+                                                    _vm.formatDate(
+                                                      rate.end_date
+                                                    )
+                                                  ) +
+                                                  "\n                        "
+                                              )
+                                            ]
+                                          )
+                                        ])
+                                      ])
                                     ]
                                   ),
                                   _vm._v(" "),
@@ -14556,7 +14615,32 @@ var render = function() {
                                             }
                                           }
                                         },
-                                        [_vm._v("Edit")]
+                                        [
+                                          _c(
+                                            "svg",
+                                            {
+                                              staticClass: "h-6 w-6",
+                                              attrs: {
+                                                xmlns:
+                                                  "http://www.w3.org/2000/svg",
+                                                fill: "none",
+                                                viewBox: "0 0 24 24",
+                                                stroke: "currentColor"
+                                              }
+                                            },
+                                            [
+                                              _c("path", {
+                                                attrs: {
+                                                  "stroke-linecap": "round",
+                                                  "stroke-linejoin": "round",
+                                                  "stroke-width": "2",
+                                                  d:
+                                                    "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        ]
                                       ),
                                       _vm._v(" "),
                                       _c(
@@ -14570,7 +14654,32 @@ var render = function() {
                                             }
                                           }
                                         },
-                                        [_vm._v("Delete")]
+                                        [
+                                          _c(
+                                            "svg",
+                                            {
+                                              staticClass: "h-6 w-6",
+                                              attrs: {
+                                                xmlns:
+                                                  "http://www.w3.org/2000/svg",
+                                                fill: "none",
+                                                viewBox: "0 0 24 24",
+                                                stroke: "currentColor"
+                                              }
+                                            },
+                                            [
+                                              _c("path", {
+                                                attrs: {
+                                                  "stroke-linecap": "round",
+                                                  "stroke-linejoin": "round",
+                                                  "stroke-width": "2",
+                                                  d:
+                                                    "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        ]
                                       )
                                     ]
                                   )
@@ -14857,15 +14966,52 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "mt-5 justify-start flex w-2/5" },
+          {
+            staticClass:
+              "mt-5 justify-start flex w-2/5 text-gray-600 hover:underline"
+          },
           [
             _c(
               "router-link",
               {
-                staticClass: "text-left underline uppercase",
+                staticClass:
+                  "text-left  uppercase flex font-semibold items-center",
                 attrs: { to: "/home/hotel-rate" }
               },
-              [_vm._v("Go to Rates")]
+              [
+                _c("span", [_vm._v("Go to Rates")]),
+                _vm._v(" "),
+                _c("span", [
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "h-5 w-5",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 20 20",
+                        fill: "currentColor"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          d:
+                            "M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("path", {
+                        attrs: {
+                          "fill-rule": "evenodd",
+                          d:
+                            "M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z",
+                          "clip-rule": "evenodd"
+                        }
+                      })
+                    ]
+                  )
+                ])
+              ]
             )
           ],
           1
@@ -14985,7 +15131,42 @@ var render = function() {
                                         {
                                           staticClass: "text-sm text-gray-900"
                                         },
-                                        [_vm._v(_vm._s(hotel.stars))]
+                                        [
+                                          _c(
+                                            "span",
+                                            { staticClass: "flex flex-grow" },
+                                            _vm._l(hotel.stars, function(i) {
+                                              return _c(
+                                                "svg",
+                                                {
+                                                  key: i,
+                                                  staticClass:
+                                                    "h-4 w-4 text-yellow-400",
+                                                  attrs: {
+                                                    xmlns:
+                                                      "http://www.w3.org/2000/svg",
+                                                    fill: "none",
+                                                    viewBox: "0 0 24 24",
+                                                    stroke: "currentColor"
+                                                  }
+                                                },
+                                                [
+                                                  _c("path", {
+                                                    attrs: {
+                                                      "stroke-linecap": "round",
+                                                      "stroke-linejoin":
+                                                        "round",
+                                                      "stroke-width": "2",
+                                                      d:
+                                                        "M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                                                    }
+                                                  })
+                                                ]
+                                              )
+                                            }),
+                                            0
+                                          )
+                                        ]
                                       )
                                     ]
                                   ),
@@ -14996,13 +15177,23 @@ var render = function() {
                                       staticClass: "px-6 py-4 whitespace-nowrap"
                                     },
                                     [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass: "text-sm text-gray-900"
-                                        },
-                                        [_vm._v(_vm._s(hotel.address))]
-                                      )
+                                      hotel.address
+                                        ? _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "text-sm text-gray-900"
+                                            },
+                                            [_vm._v(_vm._s(hotel.address))]
+                                          )
+                                        : _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "text-sm text-gray-900"
+                                            },
+                                            [_vm._v("N/A")]
+                                          )
                                     ]
                                   ),
                                   _vm._v(" "),
@@ -15017,20 +15208,6 @@ var render = function() {
                                         "span",
                                         {
                                           staticClass:
-                                            "text-gray-400 hover:text-gray-900 hover:underline cursor-pointer",
-                                          on: {
-                                            click: function($event) {
-                                              return _vm.goToRates(hotel)
-                                            }
-                                          }
-                                        },
-                                        [_vm._v("Rates")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass:
                                             "text-blue-500 hover:text-blue-900 hover:underline cursor-pointer",
                                           on: {
                                             click: function($event) {
@@ -15038,7 +15215,32 @@ var render = function() {
                                             }
                                           }
                                         },
-                                        [_vm._v("Edit Hotel")]
+                                        [
+                                          _c(
+                                            "svg",
+                                            {
+                                              staticClass: "h-6 w-6",
+                                              attrs: {
+                                                xmlns:
+                                                  "http://www.w3.org/2000/svg",
+                                                fill: "none",
+                                                viewBox: "0 0 24 24",
+                                                stroke: "currentColor"
+                                              }
+                                            },
+                                            [
+                                              _c("path", {
+                                                attrs: {
+                                                  "stroke-linecap": "round",
+                                                  "stroke-linejoin": "round",
+                                                  "stroke-width": "2",
+                                                  d:
+                                                    "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        ]
                                       ),
                                       _vm._v(" "),
                                       _c(
@@ -15052,7 +15254,32 @@ var render = function() {
                                             }
                                           }
                                         },
-                                        [_vm._v("Delete")]
+                                        [
+                                          _c(
+                                            "svg",
+                                            {
+                                              staticClass: "h-6 w-6",
+                                              attrs: {
+                                                xmlns:
+                                                  "http://www.w3.org/2000/svg",
+                                                fill: "none",
+                                                viewBox: "0 0 24 24",
+                                                stroke: "currentColor"
+                                              }
+                                            },
+                                            [
+                                              _c("path", {
+                                                attrs: {
+                                                  "stroke-linecap": "round",
+                                                  "stroke-linejoin": "round",
+                                                  "stroke-width": "2",
+                                                  d:
+                                                    "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        ]
                                       )
                                     ]
                                   )

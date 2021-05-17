@@ -11,7 +11,7 @@
               type="date" 
               name="startDate"
               v-model="newRate.start_date"
-              :min="today"
+              :min="newRate.start_date"
               class="focus:outline-none 
                     focus:ring ring-gray-200 border-2 
                     rounded-md w-full p-2"
@@ -112,8 +112,15 @@
         </button>
       </form>
 
-      <div class="mt-5 justify-start flex w-2/5">
-        <router-link to="/home" class="text-left underline uppercase">Go to Hotels</router-link>
+      <div class="mt-5 justify-start flex w-2/5 text-gray-600 hover:underline">
+        <router-link to="/home" class="text-left  uppercase flex font-semibold items-center">
+          <span>Go to Hotels</span>
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+          </span>
+        </router-link>
       </div>
     </div>  
 
@@ -131,6 +138,9 @@
               <table v-show="!loading" class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                   <tr>
+                    <!-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Hotel
+                    </th> -->
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Date Range
                     </th>
@@ -147,11 +157,14 @@
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                   <tr v-for="rate in rates" :key="rate.id">
+                  <!-- <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="text-sm text-gray-800 font-medium">{{ rate.adult_rate }}</div>
+                    </td> -->
                     <td class="px-6 py-4 whitespace-nowrap">
-                      <div class="flex items-center">
-                        <div class="ml-4">
+                      <div class="flex">
+                        <div>
                           <div class="text-sm font-medium text-gray-800">
-                            {{formatDate(rate.start_date) }} <span class="font-normal">-</span> {{ formatDate(rate.end_date) }}
+                            {{formatDate(rate.start_date) }} <span class="font-light">--</span> {{ formatDate(rate.end_date) }}
                           </div>
                         </div>
                       </div>
@@ -164,8 +177,16 @@
                     </td>
                     
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex flex-row justify-between">
-                      <span @click="editRate(rate)" class="text-blue-500 hover:text-blue-900 hover:underline cursor-pointer">Edit</span>
-                      <span @click="deleteRate(rate.id)" class="text-red-500 hover:text-red-600 hover:underline cursor-pointer">Delete</span>
+                      <span @click="editRate(rate)" class="text-blue-500 hover:text-blue-900 hover:underline cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                        </svg>
+                      </span>
+                      <span @click="deleteRate(rate.id)" class="text-red-500 hover:text-red-600 hover:underline cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                      </span>
                     </td>
                   </tr>
                 </tbody>

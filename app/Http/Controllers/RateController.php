@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Rate;
 use Carbon\Carbon;
+use Carbon\CarbonPeriod;
+use Illuminate\Support\Facades\DB;
+
 
 
 class RateController extends Controller
@@ -17,7 +20,7 @@ class RateController extends Controller
      */
     public function index()
     {
-        return Rate::orderBy('created_at', 'asc')->get();  //returns values in ascending order
+        return Rate::orderBy('start_date', 'asc')->get();  //returns values in ascending order
 
     }
 
@@ -30,26 +33,44 @@ class RateController extends Controller
     public function store(Request $request){
 
         $this->validate($request, [
-            'start_date' => 'required',
-            'end_date' => 'required',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date',
             'adult_rate' => 'required',
             'child_rate' => 'required',
             'hotel_id' => 'required'
         ]);
   
-
-        $rate = new Rate([
-            // 'start_date' => $this->formatDate($request->get('start_date')),
-            // 'end_date' => $this->formatDate($request->get('end_date')),
+        $allRates = Rate::orderBy('start_date', 'asc')->get();
+        $newRate = new Rate([
             'start_date' => $request->get('start_date'),
             'end_date' => $request->get('end_date'),
             'adult_rate' => $request->get('adult_rate'),
             'child_rate' => $request->get('child_rate'),
             'hotel_id' => $request->get('hotel_id'),
         ]);
-        $rate->save(); 
-        
-        return response()->json(['message' => 'Rate Added', 'Rate' => $rate]);
+
+        //check if rates range already exists
+        if($allRates){
+            $start = Carbon::parse($request['start_date'])->format('Y-m-d 00:00:00');
+            $end = Carbon::parse($request['end_date'])->format('Y-m-d 23:59:59');
+            $existsActive = Rate::where(function ($query) use ($start) {
+                                                 $query->where('start_date', '<=', $start);
+                                                 $query->where('end_date', '>=', $start);
+                                             })->orWhere(function ($query) use ($end) {
+                                                 $query->where('start_date', '<=', $end);
+                                                 $query->where('end_date', '>=', $end);
+                                             })->count();
+            if($existsActive > 0 ){
+                return response()->json(['message' => 'Date ranges is overlapping, you might want to select another range ']);
+            }else {
+                $newRate->save();  
+            }
+           
+        }else{
+            $newRate->save(); 
+        }
+
+        return response()->json(['message' => 'Rate Added', 'Rate' => $newRate]);
 
     }
 
@@ -70,6 +91,33 @@ class RateController extends Controller
             $rate->end_date = $request->get('end_date');
             $rate->adult_rate = $request->get('adult_rate');
             $rate->child_rate = $request->get('child_rate');
+
+             //check if rates range already exists
+            if($allRates){
+                $start = Carbon::parse($request['start_date'])->format('Y-m-d 00:00:00');
+                $end = Carbon::parse($request['end_date'])->format('Y-m-d 23:59:59');
+                $existsActive = Rate::where(function ($query) use ($start) {
+                                                    $query->where('start_date', '<=', $start);
+                                                    $query->where('end_date', '>=', $start);
+                                                })->orWhere(function ($query) use ($end) {
+                                                    $query->where('start_date', '<=', $end);
+                                                    $query->where('end_date', '>=', $end);
+                                                })->count();
+                if($existsActive > 0 ){
+                    return response()->json([
+                        'message' => 'Date ranges is overlapping, you might want to select another range '
+                        ]);
+                }else {
+                    $rate->save();  
+                }
+            
+            }else{
+                $rate->save(); 
+            }
+
+        return response()->json(['message' => 'Rate Added', 'Rate' => $newRate]);
+
+
             $rate->save();
             return response()->json(['message' => 'Rate Updated', 'Rate' => $rate]);
         }else {
