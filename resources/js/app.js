@@ -8,6 +8,9 @@
 
 import VueRouter from 'vue-router'
 import router from './router.js'
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
 
 
 window.Vue = require('vue').default;
@@ -15,6 +18,8 @@ window.Vue = require('vue').default;
 Vue.config.productionTip = false;
 
 Vue.use(VueRouter)
+Vue.use(VueSweetalert2);
+
 
 /**
  * The following block of code may be used to automatically register your

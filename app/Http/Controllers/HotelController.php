@@ -73,7 +73,24 @@ class HotelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'stars'=>'required',
+        ]);
+        if (Hotel::where('id', $id)->exists()) {
+            $hotel = Hotel::find($id);
+            $hotel->name =  $request->get('name');
+            $hotel->stars = $request->get('stars');
+            $hotel->address = $request->get('address');
+            $hotel->save();
+            return response()->json(['message' => 'Hotel Updated', 'Hotel' => $hotel]);
+        }else {
+            return response()->json([
+                "message" => "Hotel not found"
+              ], 404);
+        }
+       
+
     }
 
     /**
@@ -84,6 +101,15 @@ class HotelController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (Hotel::where('id', $id)->exists()) {
+            $contact = Hotel::find($id);
+            $contact->delete();
+            return response()->json(['message' => 'Hotel Deleted']);
+
+        }else {
+            return response()->json([
+                "message" => "Hotel not found"
+              ], 404);
+        }
     }
 }
