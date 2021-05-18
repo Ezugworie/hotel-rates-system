@@ -54,21 +54,9 @@
                     </div>
                 </div>
 
-                <div class="mb-3">
-                    <div class="col-md-6 offset-md-4">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                            <label class="form-check-label" for="remember">
-                                {{ __('Remember Me') }}
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
                 <button 
                     type="submit" 
-                    class="w-full bg-gray-500 
+                    class="w-full bg-gray-500 mt-6
                             text-gray-50 
                             rounded-md p-2
                             hover:bg-gray-700 focus:outline-none

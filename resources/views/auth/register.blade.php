@@ -104,7 +104,7 @@
 
                 <button 
                     type="submit" 
-                    class="w-full bg-gray-500 
+                    class="w-full bg-gray-500 mt-6
                             text-gray-50 
                             rounded-md p-2
                             hover:bg-gray-700 focus:outline-none

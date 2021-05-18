@@ -1,8 +1,8 @@
 <template>
-  <div class="w-full flex flex-row">
-    <div class="w-full md:w-1/2 flex flex-col justify-center items-center border-r">
+  <div class="w-full flex flex-col md:flex-row">
+    <div class="w-full md:w-1/2 p-5 flex flex-col justify-center items-center border-r">
       <span class="text-lg font-medium uppercase self-center my-5 text-gray-500">Create Rate</span>
-      <form @submit.prevent="createRate()" class="w-2/5 self-center">
+      <form @submit.prevent="createRate()" class="w-full md:w-2/5 self-center">
         <div class="mb-3">
           <label for="startDate" class="mb-3">Start Date </label>
           <div>
@@ -10,8 +10,8 @@
               required
               type="date" 
               name="startDate"
+              :max="newRate.end_date"
               v-model="newRate.start_date"
-              :min="newRate.start_date"
               class="focus:outline-none 
                     focus:ring ring-gray-200 border-2 
                     rounded-md w-full p-2"
@@ -125,7 +125,7 @@
     </div>  
 
   <div class="w-full md:w-1/2 flex flex-col justify-center ritems-cente">
-      <span class="text-lg font-medium uppercase self-center my-2 text-gray-500">Rates</span>
+      <span class="text-lg font-medium uppercase self-center my-2 text-gray-500">Hotel Rates</span>
       <div class="w-full p-10 self-center">
       
       <div class="flex flex-col">
@@ -228,9 +228,12 @@ export default {
       if (this.creatingRateMode) {
         axios.post('/api/rates', this.$data.newRate)
              .then(response => {
-                console.log(response.data)
+                console.log(response.data.message+'ERRORR')
+                notifyUserOfResponse(response.data.message)
                 this.fetchRates()
                 this.emptyForm(this.$data.newRate)
+        }).catch(error => {
+          console.log(error+"ERRORR")
         })
       }else {
         //edit rates
@@ -257,7 +260,6 @@ export default {
     },
 
     editRate: function(obj) {
-      console.log("Editing"+ JSON.stringify(obj))
         obj.start_date = obj.start_date.split(' ')[0];
         obj.end_date = obj.end_date.split(' ')[0];
 
@@ -271,6 +273,26 @@ export default {
         this.creatingRateMode = false
     },
 
+    notifyUserOfResponse: function(message){
+        Swal.fire({
+          toast: true,
+          icon: 'info',
+          title: message,
+          animation: false,
+          position: 'bottom',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          } 
+        })
+        
+    },
+
+
+     
     deleteRate: function(id) {
       this.$swal({
         title: 'Are you sure?',
@@ -295,12 +317,7 @@ export default {
       
     },
 
-    // createRate: function(hotel) {
-    //   localStorage.setItem('hotel-key', hotel)
-    //   this.$router.push('/home/hotel-rate');
-    // }
     fetchHotels: function() {
-      console.log("Fetching Hotels in Rates")
       axios.get('/api/hotels')
            .then(response => {
               this.hotels = response.data
@@ -316,7 +333,6 @@ export default {
   mounted() {
     this.fetchHotels()
     this.fetchRates()
-    console.log('Rate Home mounted')
   },
   watch: {
     rates: {

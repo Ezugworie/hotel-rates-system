@@ -91,40 +91,15 @@ class RateController extends Controller
             $rate->end_date = $request->get('end_date');
             $rate->adult_rate = $request->get('adult_rate');
             $rate->child_rate = $request->get('child_rate');
-
-             //check if rates range already exists
-            if($allRates){
-                $start = Carbon::parse($request['start_date'])->format('Y-m-d 00:00:00');
-                $end = Carbon::parse($request['end_date'])->format('Y-m-d 23:59:59');
-                $existsActive = Rate::where(function ($query) use ($start) {
-                                                    $query->where('start_date', '<=', $start);
-                                                    $query->where('end_date', '>=', $start);
-                                                })->orWhere(function ($query) use ($end) {
-                                                    $query->where('start_date', '<=', $end);
-                                                    $query->where('end_date', '>=', $end);
-                                                })->count();
-                if($existsActive > 0 ){
-                    return response()->json([
-                        'message' => 'Date ranges is overlapping, you might want to select another range '
-                        ]);
-                }else {
-                    $rate->save();  
-                }
             
-            }else{
-                $rate->save(); 
-            }
-
-        return response()->json(['message' => 'Rate Added', 'Rate' => $newRate]);
-
-
             $rate->save();
-            return response()->json(['message' => 'Rate Updated', 'Rate' => $rate]);
+            return response()->json(['message' => 'Ratet Updated', 'Rate' => $rate]);
         }else {
             return response()->json([
                 "message" => "Rate not found"
               ], 404);
         }
+           
        
 
     }
@@ -147,6 +122,42 @@ class RateController extends Controller
                 "message" => "Rate not found"
               ], 404);
         }
+    }
+
+     /**
+     * Search rates.
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $start_date = Carbon::parse($request->get('start_date'));
+        $end_date = Carbon::parse($request->get('end_date'));
+
+        $period = CarbonPeriod::create($start_date, $end_date);
+        
+        // foreach ($period as $date) {
+        //     $date->format('Y-m-d');
+        // }
+
+        // $dates = $period->toArray();
+
+        // // $number_of_days = $end_date->diffInDays($start_date);
+        // $allRates = Rate::all();  //returns values in ascending order
+        
+        // foreach ($period as $date) {
+        //    foreach ($allRates as $key => $value) {
+        //         $idCats = array_column($cats, 'id');
+        //    }
+        // }
+        // return $allRates;
+
+        $dates = Rate::where('hotel_id','=',$request->get('hotel_id'))
+        ->whereBetween('start_date', array($request->start_date, $request->end_date))
+        ->whereBetween('end_date', array($request->start_date, $request->end_date))
+        ->get();
+
+        return $dates;
     }
 
     protected function formatDate($date){

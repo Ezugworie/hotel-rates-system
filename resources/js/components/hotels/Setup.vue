@@ -1,8 +1,8 @@
 <template>
-  <div class="w-full flex flex-row">
-    <div class="w-full md:w-1/2 flex flex-col justify-center items-center border-r">
+  <div class="w-full flex flex-col md:flex-row">
+    <div class="w-full p-4 md:w-1/2 flex flex-col justify-center items-center border-r">
       <span class="text-lg font-medium uppercase self-center my-5 text-gray-500">Create Hotel</span>
-      <form @submit.prevent="createHotel()" class="w-2/5 self-center">
+      <form @submit.prevent="createHotel()" class="w-full md:w-2/5 self-center">
         <div class="mb-3">
           <label for="name" class="mb-3">Hotel Name </label>
           <div>
@@ -96,7 +96,7 @@
     </div>
 
      <div class="w-full md:w-1/2 flex flex-col justify-center items-center">
-      <span class="text-lg font-medium uppercase self-center my-5 text-gray-500">Hotels</span>
+      <span class="text-lg font-medium uppercase self-center my-3 text-gray-500">Hotels</span>
       <div class="w-full p-10 self-center">
         
 
@@ -128,7 +128,7 @@
                   <tr v-for="hotel in hotels" :key="hotel.id">
                     <td class="px-6 py-4 whitespace-nowrap">
                       <div class="flex items-center">
-                        <div class="ml-4">
+                        <div>
                           <div class="text-sm font-medium text-gray-900">
                             {{ hotel.name }}
                           </div>
@@ -150,7 +150,6 @@
                     </td>
                     
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex flex-row justify-between">
-                      <!-- <span @click="goToRates(hotel)" class="text-gray-400 hover:text-gray-900 hover:underline cursor-pointer">Rates</span> -->
                       <span @click="editHotels(hotel)" class="text-blue-500 hover:text-blue-900 hover:underline cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -202,21 +201,17 @@ export default {
         axios.post('/api/hotels',
           this.$data.newHotel
         ).then(response => {
-             console.log(response.data)
              this.fetchHotels()
              this.newHotel = hotelObj
-              // this.hotels = response.data
-              console.log("HOTELS RESPONSE ==>  "+JSON.stringify(response));
+        }).catch(error => {
+          console.log(error.message)
         })
       }else {
         axios.put(`/api/hotels/${this.newHotel.id}`, this.$data.newHotel)
              .then(response => {
-                console.log(response.data)
                 this.fetchHotels()
                 this.newHotel = hotelObj
                 this.creatingHotelMode = true
-                  // this.hotels = response.data
-                  console.log("HOTELS RESPONSE ==>  "+JSON.stringify(response));
         })
       }
     },
@@ -234,7 +229,6 @@ export default {
     },
 
     editHotels: function(obj) {
-      console.log("Editing"+ JSON.stringify(obj))
       this.newHotel = obj
       this.creatingHotelMode = false
     },
@@ -263,15 +257,9 @@ export default {
       
     },
 
-    goToRates: function(hotel) {
-      localStorage.setItem('hotel-key', hotel)
-      this.$router.push('/home/hotel-rate');
-    },
-
   },
   mounted() {
     this.fetchHotels()
-    console.log('Hotel Home mounted')
   },
   watch: {
     hotels: {
