@@ -91,9 +91,9 @@
           </form>
         </div>
         <div class="w-1/4 flex flex-col justify-items-center justify-center border font-medium text-xl items-center rounded-md space-y-5 shadow p-10">
-          <div>Per Adult Rate: $45</div>
-          <div>Per Child Rate: $45</div>
-          <div>Total: $90.00</div>
+          <div>Per Adult Rate: $</div>
+          <div>Per Child Rate: $</div>
+          <div>Total: $</div>
         </div>
       </div>
   </div>
