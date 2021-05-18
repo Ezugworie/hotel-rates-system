@@ -2,9 +2,10 @@
 
 @section('content')
 <div class="w-full">
-    <div class="flex justify-center items-center">
-        <div class="w-full md:w-1/4 flex flex-col justify-center border rounded-md py-10 mx-5 shadow">
-            <span class="text-lg font-medium uppercase self-center"> {{ __('Admin Login') }}</span>
+    <div class="flex flex-row justify-center h-screen items-center">
+        <div class="hidden md:flex w-1/2">gi</div>
+        <div class="w-full md:w-1/4 flex flex-col items-center border rounded-md py-10 mx-5 shadow">
+            <span class="text-lg font-medium uppercase self-center text-gray-500"> {{ __('Admin Login') }}</span>
             <form method="POST" action="{{ route('login') }}" class="w-full flex flex-col self-center p-8">
                 @csrf
 
@@ -16,7 +17,7 @@
                             id="email" 
                             type="email" 
                             class="focus:outline-none 
-                                    focus:ring ring-gray-200 border border-2 
+                                    focus:ring ring-gray-200 border-2 
                                     rounded-md w-full p-2 @error('email') 
                                     is-invalid @enderror" 
                             name="email" 
