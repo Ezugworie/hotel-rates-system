@@ -22,3 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::apiResource('hotels', HotelController::class);
 Route::apiResource('rates', RateController::class);
+
+Route::post('/rates/search', [RateController::class, 'search'])->name('search');
+
+

@@ -1868,14 +1868,130 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      hotels: [],
+      today: new Date().toISOString().split("T")[0],
+      loading: false
+    };
+  },
+  methods: {
+    fetchHotels: function fetchHotels() {
+      var _this = this;
+
+      console.log("Fetching Hotels in Rates");
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/hotels').then(function (response) {
+        _this.hotels = response.data;
+      });
+    }
+  },
   mounted: function mounted() {
+    this.fetchHotels();
     console.log('User home mounted');
   }
 });
@@ -2162,11 +2278,14 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.creatingRateMode) {
         axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/rates', this.$data.newRate).then(function (response) {
-          console.log(response.data);
+          console.log(response.data.message + 'ERRORR');
+          notifyUserOfResponse(response.data.message);
 
           _this.fetchRates();
 
           _this.emptyForm(_this.$data.newRate);
+        })["catch"](function (error) {
+          console.log(error + "ERRORR");
         });
       } else {
         //edit rates
@@ -2195,10 +2314,25 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     editRate: function editRate(obj) {
-      console.log("Editing" + JSON.stringify(obj));
       obj.start_date = obj.start_date.split(' ')[0];
       obj.end_date = obj.end_date.split(' ')[0];
       this.newRate.id = obj.id, this.newRate.start_date = obj.start_date, this.newRate.end_date = obj.end_date, this.newRate.adult_rate = obj.adult_rate, this.newRate.child_rate = obj.child_rate, this.newRate.hotel_id = obj.hotel_id, this.creatingRateMode = false;
+    },
+    notifyUserOfResponse: function notifyUserOfResponse(message) {
+      Swal.fire({
+        toast: true,
+        icon: 'info',
+        title: message,
+        animation: false,
+        position: 'bottom',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: function didOpen(toast) {
+          toast.addEventListener('mouseenter', Swal.stopTimer);
+          toast.addEventListener('mouseleave', Swal.resumeTimer);
+        }
+      });
     },
     deleteRate: function deleteRate(id) {
       var _this3 = this;
@@ -2220,14 +2354,9 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    // createRate: function(hotel) {
-    //   localStorage.setItem('hotel-key', hotel)
-    //   this.$router.push('/home/hotel-rate');
-    // }
     fetchHotels: function fetchHotels() {
       var _this4 = this;
 
-      console.log("Fetching Hotels in Rates");
       axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/hotels').then(function (response) {
         _this4.hotels = response.data;
       });
@@ -2239,7 +2368,6 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.fetchHotels();
     this.fetchRates();
-    console.log('Rate Home mounted');
   },
   watch: {
     rates: {
@@ -2447,7 +2575,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -2470,24 +2597,18 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.creatingHotelMode) {
         axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/hotels', this.$data.newHotel).then(function (response) {
-          console.log(response.data);
-
-          _this.fetchHotels();
-
-          _this.newHotel = _utils_index_js__WEBPACK_IMPORTED_MODULE_0__.hotelObj; // this.hotels = response.data
-
-          console.log("HOTELS RESPONSE ==>  " + JSON.stringify(response));
-        });
-      } else {
-        axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/hotels/".concat(this.newHotel.id), this.$data.newHotel).then(function (response) {
-          console.log(response.data);
-
           _this.fetchHotels();
 
           _this.newHotel = _utils_index_js__WEBPACK_IMPORTED_MODULE_0__.hotelObj;
-          _this.creatingHotelMode = true; // this.hotels = response.data
+        })["catch"](function (error) {
+          console.log(error.message);
+        });
+      } else {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/hotels/".concat(this.newHotel.id), this.$data.newHotel).then(function (response) {
+          _this.fetchHotels();
 
-          console.log("HOTELS RESPONSE ==>  " + JSON.stringify(response));
+          _this.newHotel = _utils_index_js__WEBPACK_IMPORTED_MODULE_0__.hotelObj;
+          _this.creatingHotelMode = true;
         });
       }
     },
@@ -2503,7 +2624,6 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     editHotels: function editHotels(obj) {
-      console.log("Editing" + JSON.stringify(obj));
       this.newHotel = obj;
       this.creatingHotelMode = false;
     },
@@ -2526,15 +2646,10 @@ __webpack_require__.r(__webpack_exports__);
           sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire('Deleted!', 'Hotel has been deleted.', 'success');
         }
       });
-    },
-    goToRates: function goToRates(hotel) {
-      localStorage.setItem('hotel-key', hotel);
-      this.$router.push('/home/hotel-rate');
     }
   },
   mounted: function mounted() {
     this.fetchHotels();
-    console.log('Hotel Home mounted');
   },
   watch: {
     hotels: {
@@ -14076,9 +14191,196 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n  User Home works\n")])
+  return _c(
+    "div",
+    {
+      staticClass:
+        "flex flex-col w-full justify-center items-center text-gray-500"
+    },
+    [
+      _c(
+        "span",
+        {
+          staticClass:
+            "text-lg font-medium uppercase self-center my-5 text-gray-500"
+        },
+        [_vm._v("Hotel Rate Search")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "w-full flex justify-center spacce-x-5" }, [
+        _c(
+          "div",
+          { staticClass: "w-1/4 justify-center border rounded-md shadow p-10" },
+          [
+            _c(
+              "form",
+              {
+                staticClass: "self-center",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                  }
+                }
+              },
+              [
+                _vm._m(0),
+                _vm._v(" "),
+                _vm._m(1),
+                _vm._v(" "),
+                _vm._m(2),
+                _vm._v(" "),
+                _vm._m(3),
+                _vm._v(" "),
+                _c("div", { staticClass: "mb-3" }, [
+                  _c(
+                    "label",
+                    { staticClass: "mb-3", attrs: { for: "hotel" } },
+                    [_vm._v("Hotel ")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "select",
+                      {
+                        staticClass:
+                          "focus:outline-none\n                      focus:ring ring-gray-200 border-2 \n                      rounded-md w-full p-2",
+                        attrs: { required: "", type: "", name: "hotel" }
+                      },
+                      [
+                        _c(
+                          "option",
+                          {
+                            staticClass: "text-gray-400",
+                            attrs: { disabled: "", selected: "", value: "" }
+                          },
+                          [_vm._v("Please select one")]
+                        ),
+                        _vm._v(" "),
+                        _vm._l(_vm.hotels, function(hotel) {
+                          return _c(
+                            "option",
+                            { key: hotel.id, domProps: { value: hotel.id } },
+                            [_vm._v(" " + _vm._s(hotel.name) + " ")]
+                          )
+                        })
+                      ],
+                      2
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "w-full bg-gray-500 mt-5 \n                        text-gray-50 \n                        rounded-md p-2\n                        hover:bg-gray-700 focus:outline-none\n                        shadow\n                        focus:ring-2 focus:ring-gray-600 \n                        focus:ring-opacity-50",
+                    attrs: { type: "submit" }
+                  },
+                  [_vm._v("\n            Search Rates\n          ")]
+                )
+              ]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _vm._m(4)
+      ])
+    ]
+  )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mb-3" }, [
+      _c("label", { staticClass: "mb-3", attrs: { for: "startDate" } }, [
+        _vm._v("Check-in Date ")
+      ]),
+      _vm._v(" "),
+      _c("div", [
+        _c("input", {
+          staticClass:
+            "focus:outline-none \n                      focus:ring ring-gray-200 border-2 \n                      rounded-md w-full p-2",
+          attrs: { required: "", type: "date", name: "startDate" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mb-3" }, [
+      _c("label", { staticClass: "mb-3", attrs: { for: "endDate" } }, [
+        _vm._v("Check-out Date ")
+      ]),
+      _vm._v(" "),
+      _c("div", [
+        _c("input", {
+          staticClass:
+            "focus:outline-none \n                      focus:ring ring-gray-200 border-2 \n                      rounded-md w-full p-2",
+          attrs: { required: "", type: "date", name: "endDate" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mb-3" }, [
+      _c("label", { staticClass: "mb-3", attrs: { for: "adultRate" } }, [
+        _vm._v("Number of Adults")
+      ]),
+      _vm._v(" "),
+      _c("div", [
+        _c("input", {
+          staticClass:
+            "focus:outline-none \n                      focus:ring ring-gray-200 border-2 \n                      rounded-md w-full p-2",
+          attrs: { required: "", type: "number", name: "adultRate" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mb-3" }, [
+      _c("label", { staticClass: "mb-3", attrs: { for: "childRate" } }, [
+        _vm._v("Number of Children ")
+      ]),
+      _vm._v(" "),
+      _c("div", [
+        _c("input", {
+          staticClass:
+            "focus:outline-none \n                      focus:ring ring-gray-200 border-2 \n                      rounded-md w-full p-2",
+          attrs: { required: "", type: "number", name: "adultRate" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "w-1/4 flex flex-col justify-items-center justify-center border font-medium text-xl items-center rounded-md space-y-5 shadow p-10"
+      },
+      [
+        _c("div", [_vm._v("Per Adult Rate: $45")]),
+        _vm._v(" "),
+        _c("div", [_vm._v("Per Child Rate: $45")]),
+        _vm._v(" "),
+        _c("div", [_vm._v("Total: $90.00")])
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -14143,12 +14445,12 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w-full flex flex-row" }, [
+  return _c("div", { staticClass: "w-full flex flex-col md:flex-row" }, [
     _c(
       "div",
       {
         staticClass:
-          "w-full md:w-1/2 flex flex-col justify-center items-center border-r"
+          "w-full md:w-1/2 p-5 flex flex-col justify-center items-center border-r"
       },
       [
         _c(
@@ -14163,7 +14465,7 @@ var render = function() {
         _c(
           "form",
           {
-            staticClass: "w-2/5 self-center",
+            staticClass: "w-full md:w-2/5 self-center",
             on: {
               submit: function($event) {
                 $event.preventDefault()
@@ -14195,7 +14497,7 @@ var render = function() {
                     required: "",
                     type: "date",
                     name: "startDate",
-                    min: _vm.newRate.start_date
+                    max: _vm.newRate.end_date
                   },
                   domProps: { value: _vm.newRate.start_date },
                   on: {
@@ -14460,7 +14762,7 @@ var render = function() {
             staticClass:
               "text-lg font-medium uppercase self-center my-2 text-gray-500"
           },
-          [_vm._v("Rates")]
+          [_vm._v("Hotel Rates")]
         ),
         _vm._v(" "),
         _c("div", { staticClass: "w-full p-10 self-center" }, [
@@ -14782,12 +15084,12 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w-full flex flex-row" }, [
+  return _c("div", { staticClass: "w-full flex flex-col md:flex-row" }, [
     _c(
       "div",
       {
         staticClass:
-          "w-full md:w-1/2 flex flex-col justify-center items-center border-r"
+          "w-full p-4 md:w-1/2 flex flex-col justify-center items-center border-r"
       },
       [
         _c(
@@ -14802,7 +15104,7 @@ var render = function() {
         _c(
           "form",
           {
-            staticClass: "w-2/5 self-center",
+            staticClass: "w-full md:w-2/5 self-center",
             on: {
               submit: function($event) {
                 $event.preventDefault()
@@ -15029,7 +15331,7 @@ var render = function() {
           "span",
           {
             staticClass:
-              "text-lg font-medium uppercase self-center my-5 text-gray-500"
+              "text-lg font-medium uppercase self-center my-3 text-gray-500"
           },
           [_vm._v("Hotels")]
         ),
@@ -15099,7 +15401,7 @@ var render = function() {
                                         "div",
                                         { staticClass: "flex items-center" },
                                         [
-                                          _c("div", { staticClass: "ml-4" }, [
+                                          _c("div", [
                                             _c(
                                               "div",
                                               {
