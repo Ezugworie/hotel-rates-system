@@ -14,11 +14,12 @@
   email: admin@anglara.com
   password: password
   ```
+  
+  #### Search page
+  ![userhome](https://user-images.githubusercontent.com/30867496/118747327-b85e9480-b851-11eb-956d-986d1f405bb4.png)
+  
+  #### Admin Login
+![login](https://user-images.githubusercontent.com/30867496/118747335-bbf21b80-b851-11eb-88ff-e48dc25ae71b.png)
 
-
-
-![dd](https://user-images.githubusercontent.com/30867496/118603059-5cd9cb80-b7ab-11eb-86f3-9e49c7e0c237.png)
-![de](https://user-images.githubusercontent.com/30867496/118603853-5ac43c80-b7ac-11eb-873e-b60d97d1accf.png)
-
-
-![df](https://user-images.githubusercontent.com/30867496/118604414-0b324080-b7ad-11eb-9050-53b9cee9602a.png)
+#### Create Hotels + Rates
+![adminhome](https://user-images.githubusercontent.com/30867496/118747338-bd234880-b851-11eb-903b-6464df2f3921.png)
