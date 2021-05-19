@@ -4,7 +4,7 @@
   }
 </style>
 <template>
-  <div class="w-full flex flex-col md:flex-row ">
+  <div class="w-full flex flex-col md:flex-row bg-gray-50">
     <div class="w-full flex flex-col justify-center items-center border-r">
       <setup v-on:hotel-created="fetchHotels()"></setup>
     </div>

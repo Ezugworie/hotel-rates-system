@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex flex-col md:flex-row">
+  <div class="w-full flex flex-col md:flex-row h-screen bg-gray-50">
     <div class="w-full p-4 md:w-1/2 flex flex-col justify-center items-center border-r">
       <span class="text-lg font-medium uppercase self-center my-5 text-gray-500">Create Hotel</span>
       <form @submit.prevent="createHotel()" class="w-full md:w-2/5 self-center">

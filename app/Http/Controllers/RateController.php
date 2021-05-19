@@ -132,8 +132,10 @@ class RateController extends Controller
      */
     public function search(Request $request)
     {
-        $start_date = Carbon::parse($request->get('start_date'));
-        $end_date = Carbon::parse($request->get('end_date'));
+        // $start_date = Carbon::parse($request->get('start_date'));
+        // $end_date = Carbon::parse($request->get('end_date'));
+        $start_date = $request->get('start_date');
+        $end_date = $request->get('end_date');
 
         $period = CarbonPeriod::create($start_date, $end_date);
         
@@ -153,12 +155,26 @@ class RateController extends Controller
         // }
         // return $allRates;
 
-        $someVariable = Input::get("some_variable");
 
-        $results = DB::select( DB::raw("SELECT * FROM some_table WHERE some_col = :somevariable"), array(
-            'somevariable' => $someVariable,
-            ));
-        return $dates;
+        //     $total_adult_rate = DB::table("rates")
+        //   ->selectRaw("sum (datediff(case when ? > start_date then ? else start_date end, case when ? < end_date then ? else end_date end) * adult_rate) as my_value", [$start_date, $start_date, $end_date, $end_date])
+        //             ->where("end_date", ">=", $start_date)
+        //             ->where("start_date", "<=", $end_date)
+        //             ->value('my_value');
+
+        $total_adult_rate = dd(DB::table("rates")
+        ->selectRaw("sum (datediff(case when ? > start_date then ? else start_date end, case when ? < end_date then ? else end_date end) * adult_rate) as my_value", [$start_date, $start_date, $end_date, $end_date])
+                  ->where("end_date", ">=", $start_date)
+                  ->where("start_date", "<=", $end_date)
+                  ->toSql());
+
+        // $total_child_rate = DB::table("rates")
+        //             ->selectRaw("sum (datediff( day, case when $start_date > start_date then $start_date else start_date end, case when $end_date < end_date then $end_date else end_date end) * child_rate)")
+        //             ->where("end_date", ">=", $start_date)
+        //             ->where("start_date", "<=", $end_date)
+        //             ->get();
+
+        return $total_adult_rate;
     }
 
     protected function formatDate($date){

@@ -14216,96 +14216,103 @@ var render = function() {
     "div",
     {
       staticClass:
-        "flex flex-col w-full justify-center items-center text-gray-500"
+        "flex flex-col w-full justify-center items-center text-gray-500 bg-gray-50 h-screen"
     },
     [
       _c(
         "span",
         {
           staticClass:
-            "text-lg font-medium uppercase self-center my-5 text-gray-500"
+            "text-lg font-medium uppercase self-center my-5 text-gray-500 bg-gray-50"
         },
         [_vm._v("Hotel Rate Search")]
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "w-full flex justify-center spacce-x-5" }, [
-        _c(
-          "div",
-          { staticClass: "w-1/4 justify-center border rounded-md shadow p-10" },
-          [
-            _c(
-              "form",
-              {
-                staticClass: "self-center",
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
+      _c(
+        "div",
+        { staticClass: "w-full flex justify-center spacce-x-5 bg-gray-50" },
+        [
+          _c(
+            "div",
+            {
+              staticClass:
+                "w-1/4 justify-center border rounded-md shadow p-10 bg-white"
+            },
+            [
+              _c(
+                "form",
+                {
+                  staticClass: "self-center",
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                    }
                   }
-                }
-              },
-              [
-                _vm._m(0),
-                _vm._v(" "),
-                _vm._m(1),
-                _vm._v(" "),
-                _vm._m(2),
-                _vm._v(" "),
-                _vm._m(3),
-                _vm._v(" "),
-                _c("div", { staticClass: "mb-3" }, [
-                  _c(
-                    "label",
-                    { staticClass: "mb-3", attrs: { for: "hotel" } },
-                    [_vm._v("Hotel ")]
-                  ),
+                },
+                [
+                  _vm._m(0),
                   _vm._v(" "),
-                  _c("div", [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mb-3" }, [
                     _c(
-                      "select",
-                      {
-                        staticClass:
-                          "focus:outline-none\n                      focus:ring ring-gray-200 border-2 \n                      rounded-md w-full p-2",
-                        attrs: { required: "", type: "", name: "hotel" }
-                      },
-                      [
-                        _c(
-                          "option",
-                          {
-                            staticClass: "text-gray-400",
-                            attrs: { disabled: "", selected: "", value: "" }
-                          },
-                          [_vm._v("Please select one")]
-                        ),
-                        _vm._v(" "),
-                        _vm._l(_vm.hotels, function(hotel) {
-                          return _c(
+                      "label",
+                      { staticClass: "mb-3", attrs: { for: "hotel" } },
+                      [_vm._v("Hotel ")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c(
+                        "select",
+                        {
+                          staticClass:
+                            "focus:outline-none\n                      focus:ring ring-gray-200 border-2 \n                      rounded-md w-full p-2",
+                          attrs: { required: "", type: "", name: "hotel" }
+                        },
+                        [
+                          _c(
                             "option",
-                            { key: hotel.id, domProps: { value: hotel.id } },
-                            [_vm._v(" " + _vm._s(hotel.name) + " ")]
-                          )
-                        })
-                      ],
-                      2
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "w-full bg-gray-500 mt-5 \n                        text-gray-50 \n                        rounded-md p-2\n                        hover:bg-gray-700 focus:outline-none\n                        shadow\n                        focus:ring-2 focus:ring-gray-600 \n                        focus:ring-opacity-50",
-                    attrs: { type: "submit" }
-                  },
-                  [_vm._v("\n            Search Rates\n          ")]
-                )
-              ]
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _vm._m(4)
-      ])
+                            {
+                              staticClass: "text-gray-400",
+                              attrs: { disabled: "", selected: "", value: "" }
+                            },
+                            [_vm._v("Please select one")]
+                          ),
+                          _vm._v(" "),
+                          _vm._l(_vm.hotels, function(hotel) {
+                            return _c(
+                              "option",
+                              { key: hotel.id, domProps: { value: hotel.id } },
+                              [_vm._v(" " + _vm._s(hotel.name) + " ")]
+                            )
+                          })
+                        ],
+                        2
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "w-full bg-gray-500 mt-5 \n                        text-gray-50 \n                        rounded-md p-2\n                        hover:bg-gray-700 focus:outline-none\n                        shadow\n                        focus:ring-2 focus:ring-gray-600 \n                        focus:ring-opacity-50",
+                      attrs: { type: "submit" }
+                    },
+                    [_vm._v("\n            Search Rates\n          ")]
+                  )
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _vm._m(4)
+        ]
+      )
     ]
   )
 }
@@ -14390,7 +14397,7 @@ var staticRenderFns = [
       "div",
       {
         staticClass:
-          "w-1/4 flex flex-col justify-items-center justify-center border font-medium text-xl items-center rounded-md space-y-5 shadow p-10"
+          "w-1/4 flex flex-col justify-items-center bg-white justify-center border font-medium text-xl items-center rounded-md space-y-5 shadow p-10"
       },
       [
         _c("div", [_vm._v("Per Adult Rate: $")]),
@@ -14424,24 +14431,29 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w-full flex flex-col md:flex-row " }, [
-    _c(
-      "div",
-      {
-        staticClass: "w-full flex flex-col justify-center items-center border-r"
-      },
-      [
-        _c("setup", {
-          on: {
-            "hotel-created": function($event) {
-              return _vm.fetchHotels()
+  return _c(
+    "div",
+    { staticClass: "w-full flex flex-col md:flex-row bg-gray-50" },
+    [
+      _c(
+        "div",
+        {
+          staticClass:
+            "w-full flex flex-col justify-center items-center border-r"
+        },
+        [
+          _c("setup", {
+            on: {
+              "hotel-created": function($event) {
+                return _vm.fetchHotels()
+              }
             }
-          }
-        })
-      ],
-      1
-    )
-  ])
+          })
+        ],
+        1
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -14466,624 +14478,645 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w-full flex flex-col md:flex-row" }, [
-    _c(
-      "div",
-      {
-        staticClass:
-          "w-full md:w-1/2 p-5 flex flex-col justify-center items-center border-r"
-      },
-      [
-        _c(
-          "span",
-          {
-            staticClass:
-              "text-lg font-medium uppercase self-center my-5 text-gray-500"
-          },
-          [_vm._v("Create Rate")]
-        ),
-        _vm._v(" "),
-        _c(
-          "form",
-          {
-            staticClass: "w-full md:w-2/5 self-center",
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.createRate()
+  return _c(
+    "div",
+    { staticClass: "w-full flex flex-col md:flex-row h-screen bg-gray-50" },
+    [
+      _c(
+        "div",
+        {
+          staticClass:
+            "w-full md:w-1/2 p-5 flex flex-col justify-center items-center border-r"
+        },
+        [
+          _c(
+            "span",
+            {
+              staticClass:
+                "text-lg font-medium uppercase self-center my-5 text-gray-500"
+            },
+            [_vm._v("Create Rate")]
+          ),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              staticClass: "w-full md:w-2/5 self-center",
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.createRate()
+                }
               }
-            }
-          },
-          [
-            _c("div", { staticClass: "mb-3" }, [
-              _c(
-                "label",
-                { staticClass: "mb-3", attrs: { for: "startDate" } },
-                [_vm._v("Start Date ")]
-              ),
-              _vm._v(" "),
-              _c("div", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.newRate.start_date,
-                      expression: "newRate.start_date"
-                    }
-                  ],
-                  staticClass:
-                    "focus:outline-none \n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
-                  attrs: {
-                    required: "",
-                    type: "date",
-                    name: "startDate",
-                    max: _vm.newRate.end_date
-                  },
-                  domProps: { value: _vm.newRate.start_date },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.newRate, "start_date", $event.target.value)
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "mb-3" }, [
-              _c("label", { staticClass: "mb-3", attrs: { for: "endDate" } }, [
-                _vm._v("End Date ")
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.newRate.end_date,
-                      expression: "newRate.end_date"
-                    }
-                  ],
-                  staticClass:
-                    "focus:outline-none \n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
-                  attrs: {
-                    required: "",
-                    type: "date",
-                    name: "endDate",
-                    min: _vm.newRate.start_date
-                  },
-                  domProps: { value: _vm.newRate.end_date },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.newRate, "end_date", $event.target.value)
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "mb-3" }, [
-              _c(
-                "label",
-                { staticClass: "mb-3", attrs: { for: "adultRate" } },
-                [_vm._v("Adult Rate ")]
-              ),
-              _vm._v(" "),
-              _c("div", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.newRate.adult_rate,
-                      expression: "newRate.adult_rate"
-                    }
-                  ],
-                  staticClass:
-                    "focus:outline-none \n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
-                  attrs: { required: "", type: "number", name: "adultRate" },
-                  domProps: { value: _vm.newRate.adult_rate },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.newRate, "adult_rate", $event.target.value)
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "mb-3" }, [
-              _c(
-                "label",
-                { staticClass: "mb-3", attrs: { for: "childRate" } },
-                [_vm._v("Child Rate ")]
-              ),
-              _vm._v(" "),
-              _c("div", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.newRate.child_rate,
-                      expression: "newRate.child_rate"
-                    }
-                  ],
-                  staticClass:
-                    "focus:outline-none \n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
-                  attrs: { required: "", type: "number", name: "adultRate" },
-                  domProps: { value: _vm.newRate.child_rate },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.newRate, "child_rate", $event.target.value)
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "mb-3" }, [
-              _c("label", { staticClass: "mb-3", attrs: { for: "hotel" } }, [
-                _vm._v("Hotel ")
-              ]),
-              _vm._v(" "),
-              _c("div", [
+            },
+            [
+              _c("div", { staticClass: "mb-3" }, [
                 _c(
-                  "select",
-                  {
+                  "label",
+                  { staticClass: "mb-3", attrs: { for: "startDate" } },
+                  [_vm._v("Start Date ")]
+                ),
+                _vm._v(" "),
+                _c("div", [
+                  _c("input", {
                     directives: [
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.newRate.hotel_id,
-                        expression: "newRate.hotel_id"
+                        value: _vm.newRate.start_date,
+                        expression: "newRate.start_date"
                       }
                     ],
                     staticClass:
-                      "focus:outline-none\n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
-                    attrs: { required: "", type: "", name: "hotel" },
+                      "focus:outline-none \n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
+                    attrs: {
+                      required: "",
+                      type: "date",
+                      name: "startDate",
+                      max: _vm.newRate.end_date
+                    },
+                    domProps: { value: _vm.newRate.start_date },
                     on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.newRate,
-                          "hotel_id",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.newRate, "start_date", $event.target.value)
                       }
                     }
-                  },
-                  [
-                    _c(
-                      "option",
-                      {
-                        staticClass: "text-gray-400",
-                        attrs: { disabled: "", selected: "", value: "" }
-                      },
-                      [_vm._v("Please select one")]
-                    ),
-                    _vm._v(" "),
-                    _vm._l(_vm.hotels, function(hotel) {
-                      return _c(
-                        "option",
-                        { key: hotel.id, domProps: { value: hotel.id } },
-                        [_vm._v(" " + _vm._s(hotel.name) + " ")]
-                      )
-                    })
-                  ],
-                  2
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _vm.creatingRateMode
-              ? _c(
-                  "button",
-                  {
-                    staticClass:
-                      "w-full bg-gray-500 mt-5 \n                    text-gray-50 \n                    rounded-md p-2\n                    hover:bg-gray-700 focus:outline-none\n                    shadow\n                    focus:ring-2 focus:ring-gray-600 \n                    focus:ring-opacity-50",
-                    attrs: { type: "submit" }
-                  },
-                  [_vm._v("\n        Create\n      ")]
-                )
-              : _c(
-                  "button",
-                  {
-                    staticClass:
-                      "w-full bg-gray-500 mt-5 \n                    text-gray-50 \n                    rounded-md p-2\n                    hover:bg-gray-700 focus:outline-none\n                    shadow\n                    focus:ring-2 focus:ring-gray-600 \n                    focus:ring-opacity-50",
-                    attrs: { type: "submit" },
-                    on: { click: function($event) {} }
-                  },
-                  [_vm._v("\n        Update\n      ")]
-                )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "mt-5 justify-start flex w-2/5 text-gray-600 hover:underline"
-          },
-          [
-            _c(
-              "router-link",
-              {
-                staticClass:
-                  "text-left  uppercase flex font-semibold items-center",
-                attrs: { to: "/home" }
-              },
-              [
-                _c("span", [_vm._v("Create Hotels")]),
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "mb-3" }, [
+                _c(
+                  "label",
+                  { staticClass: "mb-3", attrs: { for: "endDate" } },
+                  [_vm._v("End Date ")]
+                ),
                 _vm._v(" "),
-                _c("span", [
+                _c("div", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.newRate.end_date,
+                        expression: "newRate.end_date"
+                      }
+                    ],
+                    staticClass:
+                      "focus:outline-none \n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
+                    attrs: {
+                      required: "",
+                      type: "date",
+                      name: "endDate",
+                      min: _vm.newRate.start_date
+                    },
+                    domProps: { value: _vm.newRate.end_date },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.newRate, "end_date", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "mb-3" }, [
+                _c(
+                  "label",
+                  { staticClass: "mb-3", attrs: { for: "adultRate" } },
+                  [_vm._v("Adult Rate ")]
+                ),
+                _vm._v(" "),
+                _c("div", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.newRate.adult_rate,
+                        expression: "newRate.adult_rate"
+                      }
+                    ],
+                    staticClass:
+                      "focus:outline-none \n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
+                    attrs: { required: "", type: "number", name: "adultRate" },
+                    domProps: { value: _vm.newRate.adult_rate },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.newRate, "adult_rate", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "mb-3" }, [
+                _c(
+                  "label",
+                  { staticClass: "mb-3", attrs: { for: "childRate" } },
+                  [_vm._v("Child Rate ")]
+                ),
+                _vm._v(" "),
+                _c("div", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.newRate.child_rate,
+                        expression: "newRate.child_rate"
+                      }
+                    ],
+                    staticClass:
+                      "focus:outline-none \n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
+                    attrs: { required: "", type: "number", name: "adultRate" },
+                    domProps: { value: _vm.newRate.child_rate },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.newRate, "child_rate", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "mb-3" }, [
+                _c("label", { staticClass: "mb-3", attrs: { for: "hotel" } }, [
+                  _vm._v("Hotel ")
+                ]),
+                _vm._v(" "),
+                _c("div", [
                   _c(
-                    "svg",
+                    "select",
                     {
-                      staticClass: "h-6 w-6",
-                      attrs: {
-                        xmlns: "http://www.w3.org/2000/svg",
-                        fill: "none",
-                        viewBox: "0 0 24 24",
-                        stroke: "currentColor"
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.newRate.hotel_id,
+                          expression: "newRate.hotel_id"
+                        }
+                      ],
+                      staticClass:
+                        "focus:outline-none\n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
+                      attrs: { required: "", type: "", name: "hotel" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.newRate,
+                            "hotel_id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
                       }
                     },
                     [
-                      _c("path", {
-                        attrs: {
-                          "stroke-linecap": "round",
-                          "stroke-linejoin": "round",
-                          "stroke-width": "2",
-                          d:
-                            "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                        }
+                      _c(
+                        "option",
+                        {
+                          staticClass: "text-gray-400",
+                          attrs: { disabled: "", selected: "", value: "" }
+                        },
+                        [_vm._v("Please select one")]
+                      ),
+                      _vm._v(" "),
+                      _vm._l(_vm.hotels, function(hotel) {
+                        return _c(
+                          "option",
+                          { key: hotel.id, domProps: { value: hotel.id } },
+                          [_vm._v(" " + _vm._s(hotel.name) + " ")]
+                        )
                       })
-                    ]
+                    ],
+                    2
                   )
                 ])
-              ]
-            )
-          ],
-          1
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "w-full md:w-1/2 flex flex-col justify-center ritems-cente"
-      },
-      [
-        _c(
-          "span",
-          {
-            staticClass:
-              "text-lg font-medium uppercase self-center my-2 text-gray-500"
-          },
-          [_vm._v("Hotel Rates")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "w-full p-10 self-center" }, [
-          _c("div", { staticClass: "flex flex-col" }, [
-            _c(
-              "div",
-              { staticClass: "-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8" },
-              [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8"
-                  },
-                  [
+              ]),
+              _vm._v(" "),
+              _vm.creatingRateMode
+                ? _c(
+                    "button",
+                    {
+                      staticClass:
+                        "w-full bg-gray-500 mt-5 \n                    text-gray-50 \n                    rounded-md p-2\n                    hover:bg-gray-700 focus:outline-none\n                    shadow\n                    focus:ring-2 focus:ring-gray-600 \n                    focus:ring-opacity-50",
+                      attrs: { type: "submit" }
+                    },
+                    [_vm._v("\n        Create\n      ")]
+                  )
+                : _c(
+                    "button",
+                    {
+                      staticClass:
+                        "w-full bg-gray-500 mt-5 \n                    text-gray-50 \n                    rounded-md p-2\n                    hover:bg-gray-700 focus:outline-none\n                    shadow\n                    focus:ring-2 focus:ring-gray-600 \n                    focus:ring-opacity-50",
+                      attrs: { type: "submit" },
+                      on: { click: function($event) {} }
+                    },
+                    [_vm._v("\n        Update\n      ")]
+                  )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "mt-5 justify-start flex w-2/5 text-gray-600 hover:underline"
+            },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass:
+                    "text-left  uppercase flex font-semibold items-center",
+                  attrs: { to: "/home" }
+                },
+                [
+                  _c("span", [_vm._v("Create Hotels")]),
+                  _vm._v(" "),
+                  _c("span", [
                     _c(
-                      "div",
+                      "svg",
                       {
-                        staticClass:
-                          "shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
+                        staticClass: "h-6 w-6",
+                        attrs: {
+                          xmlns: "http://www.w3.org/2000/svg",
+                          fill: "none",
+                          viewBox: "0 0 24 24",
+                          stroke: "currentColor"
+                        }
                       },
                       [
-                        _c("skeleton", {
-                          directives: [
-                            {
-                              name: "show",
-                              rawName: "v-show",
-                              value: _vm.loading,
-                              expression: "loading"
-                            }
-                          ],
-                          attrs: { repeat: 4 }
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "table",
-                          {
+                        _c("path", {
+                          attrs: {
+                            "stroke-linecap": "round",
+                            "stroke-linejoin": "round",
+                            "stroke-width": "2",
+                            d:
+                              "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                          }
+                        })
+                      ]
+                    )
+                  ])
+                ]
+              )
+            ],
+            1
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "w-full md:w-1/2 flex flex-col justify-center ritems-cente"
+        },
+        [
+          _c(
+            "span",
+            {
+              staticClass:
+                "text-lg font-medium uppercase self-center my-2 text-gray-500"
+            },
+            [_vm._v("Hotel Rates")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "w-full p-10 self-center" }, [
+            _c("div", { staticClass: "flex flex-col" }, [
+              _c(
+                "div",
+                { staticClass: "-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8" },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8"
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
+                        },
+                        [
+                          _c("skeleton", {
                             directives: [
                               {
                                 name: "show",
                                 rawName: "v-show",
-                                value: !_vm.loading,
-                                expression: "!loading"
+                                value: _vm.loading,
+                                expression: "loading"
                               }
                             ],
-                            staticClass: "min-w-full divide-y divide-gray-200"
-                          },
-                          [
-                            _vm._m(0),
-                            _vm._v(" "),
-                            _c(
-                              "tbody",
-                              {
-                                staticClass: "bg-white divide-y divide-gray-200"
-                              },
-                              [
-                                _vm._l(_vm.rates, function(rate) {
-                                  return _vm.rates
-                                    ? _c("tr", { key: rate.id }, [
-                                        _c(
-                                          "td",
-                                          {
-                                            staticClass:
-                                              "px-6 py-4 whitespace-nowrap"
-                                          },
-                                          [
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "text-sm text-gray-800 font-medium"
-                                              },
-                                              [_vm._v(_vm._s(rate.hotel_id))]
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "td",
-                                          {
-                                            staticClass:
-                                              "px-6 py-4 whitespace-nowrap"
-                                          },
-                                          [
-                                            _c("div", { staticClass: "flex" }, [
-                                              _c("div", [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "text-sm font-medium text-gray-800"
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "\n                          " +
-                                                        _vm._s(
-                                                          _vm.formatDate(
-                                                            rate.start_date
-                                                          )
-                                                        ) +
-                                                        " "
-                                                    ),
+                            attrs: { repeat: 4 }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "table",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: !_vm.loading,
+                                  expression: "!loading"
+                                }
+                              ],
+                              staticClass: "min-w-full divide-y divide-gray-200"
+                            },
+                            [
+                              _vm._m(0),
+                              _vm._v(" "),
+                              _c(
+                                "tbody",
+                                {
+                                  staticClass:
+                                    "bg-white divide-y divide-gray-200"
+                                },
+                                [
+                                  _vm._l(_vm.rates, function(rate) {
+                                    return _vm.rates
+                                      ? _c("tr", { key: rate.id }, [
+                                          _c(
+                                            "td",
+                                            {
+                                              staticClass:
+                                                "px-6 py-4 whitespace-nowrap"
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "text-sm text-gray-800 font-medium"
+                                                },
+                                                [_vm._v(_vm._s(rate.hotel_id))]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            {
+                                              staticClass:
+                                                "px-6 py-4 whitespace-nowrap"
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "flex" },
+                                                [
+                                                  _c("div", [
                                                     _c(
-                                                      "span",
+                                                      "div",
                                                       {
                                                         staticClass:
-                                                          "font-light"
+                                                          "text-sm font-medium text-gray-800"
                                                       },
-                                                      [_vm._v("--")]
-                                                    ),
-                                                    _vm._v(
-                                                      " " +
-                                                        _vm._s(
-                                                          _vm.formatDate(
-                                                            rate.end_date
-                                                          )
-                                                        ) +
-                                                        "\n                        "
+                                                      [
+                                                        _vm._v(
+                                                          "\n                          " +
+                                                            _vm._s(
+                                                              _vm.formatDate(
+                                                                rate.start_date
+                                                              )
+                                                            ) +
+                                                            " "
+                                                        ),
+                                                        _c(
+                                                          "span",
+                                                          {
+                                                            staticClass:
+                                                              "font-light"
+                                                          },
+                                                          [_vm._v("--")]
+                                                        ),
+                                                        _vm._v(
+                                                          " " +
+                                                            _vm._s(
+                                                              _vm.formatDate(
+                                                                rate.end_date
+                                                              )
+                                                            ) +
+                                                            "\n                        "
+                                                        )
+                                                      ]
                                                     )
-                                                  ]
-                                                )
-                                              ])
-                                            ])
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "td",
-                                          {
-                                            staticClass:
-                                              "px-6 py-4 whitespace-nowrap"
-                                          },
-                                          [
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "text-sm text-gray-800 font-medium"
-                                              },
-                                              [_vm._v(_vm._s(rate.adult_rate))]
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "td",
-                                          {
-                                            staticClass:
-                                              "px-6 py-4 whitespace-nowrap"
-                                          },
-                                          [
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "text-sm text-gray-800 font-medium"
-                                              },
-                                              [_vm._v(_vm._s(rate.child_rate))]
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "td",
-                                          {
-                                            staticClass:
-                                              "px-6 py-4 whitespace-nowrap text-sm font-medium flex flex-row justify-between"
-                                          },
-                                          [
-                                            _c(
-                                              "span",
-                                              {
-                                                staticClass:
-                                                  "text-blue-500 hover:text-blue-900 hover:underline cursor-pointer",
-                                                on: {
-                                                  click: function($event) {
-                                                    return _vm.editRate(rate)
-                                                  }
-                                                }
-                                              },
-                                              [
-                                                _c(
-                                                  "svg",
-                                                  {
-                                                    staticClass: "h-6 w-6",
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg",
-                                                      fill: "none",
-                                                      viewBox: "0 0 24 24",
-                                                      stroke: "currentColor"
+                                                  ])
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            {
+                                              staticClass:
+                                                "px-6 py-4 whitespace-nowrap"
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "text-sm text-gray-800 font-medium"
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(rate.adult_rate)
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            {
+                                              staticClass:
+                                                "px-6 py-4 whitespace-nowrap"
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "text-sm text-gray-800 font-medium"
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(rate.child_rate)
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            {
+                                              staticClass:
+                                                "px-6 py-4 whitespace-nowrap text-sm font-medium flex flex-row justify-between"
+                                            },
+                                            [
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass:
+                                                    "text-blue-500 hover:text-blue-900 hover:underline cursor-pointer",
+                                                  on: {
+                                                    click: function($event) {
+                                                      return _vm.editRate(rate)
                                                     }
-                                                  },
-                                                  [
-                                                    _c("path", {
-                                                      attrs: {
-                                                        "stroke-linecap":
-                                                          "round",
-                                                        "stroke-linejoin":
-                                                          "round",
-                                                        "stroke-width": "2",
-                                                        d:
-                                                          "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                                                      }
-                                                    })
-                                                  ]
-                                                )
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "span",
-                                              {
-                                                staticClass:
-                                                  "text-red-500 hover:text-red-600 hover:underline cursor-pointer",
-                                                on: {
-                                                  click: function($event) {
-                                                    return _vm.deleteRate(
-                                                      rate.id
-                                                    )
                                                   }
-                                                }
-                                              },
-                                              [
-                                                _c(
-                                                  "svg",
-                                                  {
-                                                    staticClass: "h-6 w-6",
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg",
-                                                      fill: "none",
-                                                      viewBox: "0 0 24 24",
-                                                      stroke: "currentColor"
-                                                    }
-                                                  },
-                                                  [
-                                                    _c("path", {
+                                                },
+                                                [
+                                                  _c(
+                                                    "svg",
+                                                    {
+                                                      staticClass: "h-6 w-6",
                                                       attrs: {
-                                                        "stroke-linecap":
-                                                          "round",
-                                                        "stroke-linejoin":
-                                                          "round",
-                                                        "stroke-width": "2",
-                                                        d:
-                                                          "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                                        xmlns:
+                                                          "http://www.w3.org/2000/svg",
+                                                        fill: "none",
+                                                        viewBox: "0 0 24 24",
+                                                        stroke: "currentColor"
                                                       }
-                                                    })
-                                                  ]
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        )
-                                      ])
-                                    : _vm._e()
-                                }),
-                                _vm._v(" "),
-                                _c(
-                                  "tr",
-                                  {
-                                    directives: [
-                                      {
-                                        name: "show",
-                                        rawName: "v-show",
-                                        value:
-                                          !_vm.loading && !_vm.rates.length,
-                                        expression: "!loading && !rates.length"
-                                      }
+                                                    },
+                                                    [
+                                                      _c("path", {
+                                                        attrs: {
+                                                          "stroke-linecap":
+                                                            "round",
+                                                          "stroke-linejoin":
+                                                            "round",
+                                                          "stroke-width": "2",
+                                                          d:
+                                                            "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                                                        }
+                                                      })
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass:
+                                                    "text-red-500 hover:text-red-600 hover:underline cursor-pointer",
+                                                  on: {
+                                                    click: function($event) {
+                                                      return _vm.deleteRate(
+                                                        rate.id
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "svg",
+                                                    {
+                                                      staticClass: "h-6 w-6",
+                                                      attrs: {
+                                                        xmlns:
+                                                          "http://www.w3.org/2000/svg",
+                                                        fill: "none",
+                                                        viewBox: "0 0 24 24",
+                                                        stroke: "currentColor"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("path", {
+                                                        attrs: {
+                                                          "stroke-linecap":
+                                                            "round",
+                                                          "stroke-linejoin":
+                                                            "round",
+                                                          "stroke-width": "2",
+                                                          d:
+                                                            "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                                        }
+                                                      })
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ])
+                                      : _vm._e()
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "tr",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "show",
+                                          rawName: "v-show",
+                                          value:
+                                            !_vm.loading && !_vm.rates.length,
+                                          expression:
+                                            "!loading && !rates.length"
+                                        }
+                                      ]
+                                    },
+                                    [
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass:
+                                            "px-3 py-3 uppercase text-center font-medium text-xs leading-5 text-gray-600",
+                                          attrs: { colspan: "6" }
+                                        },
+                                        [_vm._v("no data")]
+                                      )
                                     ]
-                                  },
-                                  [
-                                    _c(
-                                      "td",
-                                      {
-                                        staticClass:
-                                          "px-3 py-3 uppercase text-center font-medium text-xs leading-5 text-gray-600",
-                                        attrs: { colspan: "6" }
-                                      },
-                                      [_vm._v("no data")]
-                                    )
-                                  ]
-                                )
-                              ],
-                              2
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    )
-                  ]
-                )
-              ]
-            )
+                                  )
+                                ],
+                                2
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ]
+                  )
+                ]
+              )
+            ])
           ])
-        ])
-      ]
-    )
-  ])
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -15175,559 +15208,579 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w-full flex flex-col md:flex-row" }, [
-    _c(
-      "div",
-      {
-        staticClass:
-          "w-full p-4 md:w-1/2 flex flex-col justify-center items-center border-r"
-      },
-      [
-        _c(
-          "span",
-          {
-            staticClass:
-              "text-lg font-medium uppercase self-center my-5 text-gray-500"
-          },
-          [_vm._v("Create Hotel")]
-        ),
-        _vm._v(" "),
-        _c(
-          "form",
-          {
-            staticClass: "w-full md:w-2/5 self-center",
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.createHotel()
+  return _c(
+    "div",
+    { staticClass: "w-full flex flex-col md:flex-row h-screen bg-gray-50" },
+    [
+      _c(
+        "div",
+        {
+          staticClass:
+            "w-full p-4 md:w-1/2 flex flex-col justify-center items-center border-r"
+        },
+        [
+          _c(
+            "span",
+            {
+              staticClass:
+                "text-lg font-medium uppercase self-center my-5 text-gray-500"
+            },
+            [_vm._v("Create Hotel")]
+          ),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              staticClass: "w-full md:w-2/5 self-center",
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.createHotel()
+                }
               }
-            }
-          },
-          [
-            _c("div", { staticClass: "mb-3" }, [
-              _c("label", { staticClass: "mb-3", attrs: { for: "name" } }, [
-                _vm._v("Hotel Name ")
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.newHotel.name,
-                      expression: "newHotel.name"
-                    }
-                  ],
-                  staticClass:
-                    "focus:outline-none \n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
-                  attrs: { required: "", type: "text", name: "name" },
-                  domProps: { value: _vm.newHotel.name },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.newHotel, "name", $event.target.value)
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "mb-3" }, [
-              _c("label", { staticClass: "mb-3", attrs: { for: "name" } }, [
-                _vm._v("Stars ")
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _c(
-                  "select",
-                  {
+            },
+            [
+              _c("div", { staticClass: "mb-3" }, [
+                _c("label", { staticClass: "mb-3", attrs: { for: "name" } }, [
+                  _vm._v("Hotel Name ")
+                ]),
+                _vm._v(" "),
+                _c("div", [
+                  _c("input", {
                     directives: [
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.newHotel.stars,
-                        expression: "newHotel.stars"
+                        value: _vm.newHotel.name,
+                        expression: "newHotel.name"
                       }
                     ],
                     staticClass:
-                      "focus:outline-none\n                  focus:ring ring-gray-200 border border-2 \n                  rounded-md w-full p-2",
-                    attrs: { required: "", type: "", name: "name" },
+                      "focus:outline-none \n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
+                    attrs: { required: "", type: "text", name: "name" },
+                    domProps: { value: _vm.newHotel.name },
                     on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.newHotel,
-                          "stars",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.newHotel, "name", $event.target.value)
                       }
                     }
-                  },
-                  [
-                    _c(
-                      "option",
-                      {
-                        staticClass: "text-gray-400",
-                        attrs: { disabled: "", selected: "", value: "" }
-                      },
-                      [_vm._v("Please select one")]
-                    ),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "3" } }, [
-                      _vm._v("3 Stars")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "4" } }, [
-                      _vm._v("4 Stars")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "5" } }, [
-                      _vm._v("5 Stars")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "7" } }, [_vm._v("7 Stars")])
-                  ]
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "mb-3" }, [
-              _c("label", { staticClass: "mb-3", attrs: { for: "address" } }, [
-                _vm._v("Address ")
+                  })
+                ])
               ]),
               _vm._v(" "),
-              _c("div", [
-                _c("textarea", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.newHotel.address,
-                      expression: "newHotel.address"
-                    }
-                  ],
-                  staticClass:
-                    "focus:outline-none \n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
-                  attrs: { name: "address", rows: "5" },
-                  domProps: { value: _vm.newHotel.address },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.newHotel, "address", $event.target.value)
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _vm.creatingHotelMode
-              ? _c(
-                  "button",
-                  {
-                    staticClass:
-                      "w-full bg-gray-500 mt-5 \n                    text-gray-50 \n                    rounded-md p-2\n                    hover:bg-gray-700 focus:outline-none\n                    shadow\n                    focus:ring-2 focus:ring-gray-600 \n                    focus:ring-opacity-50",
-                    attrs: { type: "submit" }
-                  },
-                  [_vm._v("\n        Create\n      ")]
-                )
-              : _c(
-                  "button",
-                  {
-                    staticClass:
-                      "w-full bg-gray-500 mt-5 \n                    text-gray-50 \n                    rounded-md p-2\n                    hover:bg-gray-700 focus:outline-none\n                    shadow\n                    focus:ring-2 focus:ring-gray-600 \n                    focus:ring-opacity-50",
-                    attrs: { type: "submit" },
-                    on: { click: function($event) {} }
-                  },
-                  [_vm._v("\n        Update\n      ")]
-                )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "mt-5 justify-start flex w-2/5 text-gray-600 hover:underline"
-          },
-          [
-            _c(
-              "router-link",
-              {
-                staticClass:
-                  "text-left  uppercase flex font-semibold items-center",
-                attrs: { to: "/home/hotel-rate" }
-              },
-              [
-                _c("span", [_vm._v("Add Rates")]),
+              _c("div", { staticClass: "mb-3" }, [
+                _c("label", { staticClass: "mb-3", attrs: { for: "name" } }, [
+                  _vm._v("Stars ")
+                ]),
                 _vm._v(" "),
-                _c("span", [
+                _c("div", [
                   _c(
-                    "svg",
+                    "select",
                     {
-                      staticClass: "h-5 w-5",
-                      attrs: {
-                        xmlns: "http://www.w3.org/2000/svg",
-                        viewBox: "0 0 20 20",
-                        fill: "currentColor"
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.newHotel.stars,
+                          expression: "newHotel.stars"
+                        }
+                      ],
+                      staticClass:
+                        "focus:outline-none\n                  focus:ring ring-gray-200 border border-2 \n                  rounded-md w-full p-2",
+                      attrs: { required: "", type: "", name: "name" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.newHotel,
+                            "stars",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
                       }
                     },
                     [
-                      _c("path", {
-                        attrs: {
-                          d:
-                            "M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"
-                        }
-                      }),
+                      _c(
+                        "option",
+                        {
+                          staticClass: "text-gray-400",
+                          attrs: { disabled: "", selected: "", value: "" }
+                        },
+                        [_vm._v("Please select one")]
+                      ),
                       _vm._v(" "),
-                      _c("path", {
-                        attrs: {
-                          "fill-rule": "evenodd",
-                          d:
-                            "M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z",
-                          "clip-rule": "evenodd"
-                        }
-                      })
+                      _c("option", { attrs: { value: "3" } }, [
+                        _vm._v("3 Stars")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "4" } }, [
+                        _vm._v("4 Stars")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "5" } }, [
+                        _vm._v("5 Stars")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "7" } }, [
+                        _vm._v("7 Stars")
+                      ])
                     ]
                   )
                 ])
-              ]
-            )
-          ],
-          1
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "w-full md:w-1/2 flex flex-col justify-center items-center"
-      },
-      [
-        _c(
-          "span",
-          {
-            staticClass:
-              "text-lg font-medium uppercase self-center my-3 text-gray-500"
-          },
-          [_vm._v("Hotels")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "w-full p-10 self-center" }, [
-          _c("div", { staticClass: "flex flex-col" }, [
-            _c(
-              "div",
-              { staticClass: "-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8" },
-              [
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "mb-3" }, [
                 _c(
-                  "div",
-                  {
-                    staticClass:
-                      "py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8"
-                  },
-                  [
-                    _c(
-                      "div",
+                  "label",
+                  { staticClass: "mb-3", attrs: { for: "address" } },
+                  [_vm._v("Address ")]
+                ),
+                _vm._v(" "),
+                _c("div", [
+                  _c("textarea", {
+                    directives: [
                       {
-                        staticClass:
-                          "shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.newHotel.address,
+                        expression: "newHotel.address"
+                      }
+                    ],
+                    staticClass:
+                      "focus:outline-none \n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
+                    attrs: { name: "address", rows: "5" },
+                    domProps: { value: _vm.newHotel.address },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.newHotel, "address", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _vm.creatingHotelMode
+                ? _c(
+                    "button",
+                    {
+                      staticClass:
+                        "w-full bg-gray-500 mt-5 \n                    text-gray-50 \n                    rounded-md p-2\n                    hover:bg-gray-700 focus:outline-none\n                    shadow\n                    focus:ring-2 focus:ring-gray-600 \n                    focus:ring-opacity-50",
+                      attrs: { type: "submit" }
+                    },
+                    [_vm._v("\n        Create\n      ")]
+                  )
+                : _c(
+                    "button",
+                    {
+                      staticClass:
+                        "w-full bg-gray-500 mt-5 \n                    text-gray-50 \n                    rounded-md p-2\n                    hover:bg-gray-700 focus:outline-none\n                    shadow\n                    focus:ring-2 focus:ring-gray-600 \n                    focus:ring-opacity-50",
+                      attrs: { type: "submit" },
+                      on: { click: function($event) {} }
+                    },
+                    [_vm._v("\n        Update\n      ")]
+                  )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "mt-5 justify-start flex w-2/5 text-gray-600 hover:underline"
+            },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass:
+                    "text-left  uppercase flex font-semibold items-center",
+                  attrs: { to: "/home/hotel-rate" }
+                },
+                [
+                  _c("span", [_vm._v("Add Rates")]),
+                  _vm._v(" "),
+                  _c("span", [
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "h-5 w-5",
+                        attrs: {
+                          xmlns: "http://www.w3.org/2000/svg",
+                          viewBox: "0 0 20 20",
+                          fill: "currentColor"
+                        }
                       },
                       [
-                        _c("skeleton", {
-                          directives: [
-                            {
-                              name: "show",
-                              rawName: "v-show",
-                              value: _vm.loading,
-                              expression: "loading"
-                            }
-                          ],
-                          attrs: { repeat: 4 }
+                        _c("path", {
+                          attrs: {
+                            d:
+                              "M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"
+                          }
                         }),
                         _vm._v(" "),
-                        _c(
-                          "table",
-                          {
+                        _c("path", {
+                          attrs: {
+                            "fill-rule": "evenodd",
+                            d:
+                              "M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z",
+                            "clip-rule": "evenodd"
+                          }
+                        })
+                      ]
+                    )
+                  ])
+                ]
+              )
+            ],
+            1
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "w-full md:w-1/2 flex flex-col justify-center items-center"
+        },
+        [
+          _c(
+            "span",
+            {
+              staticClass:
+                "text-lg font-medium uppercase self-center my-3 text-gray-500"
+            },
+            [_vm._v("Hotels")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "w-full p-10 self-center" }, [
+            _c("div", { staticClass: "flex flex-col" }, [
+              _c(
+                "div",
+                { staticClass: "-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8" },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8"
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
+                        },
+                        [
+                          _c("skeleton", {
                             directives: [
                               {
                                 name: "show",
                                 rawName: "v-show",
-                                value: !_vm.loading,
-                                expression: "!loading"
+                                value: _vm.loading,
+                                expression: "loading"
                               }
                             ],
-                            staticClass: "min-w-full divide-y divide-gray-200"
-                          },
-                          [
-                            _vm._m(0),
-                            _vm._v(" "),
-                            _c(
-                              "tbody",
-                              {
-                                staticClass: "bg-white divide-y divide-gray-200"
-                              },
-                              [
-                                _vm._l(_vm.hotels, function(hotel) {
-                                  return _c("tr", { key: hotel.id }, [
-                                    _c(
-                                      "td",
-                                      {
-                                        staticClass:
-                                          "px-6 py-4 whitespace-nowrap"
-                                      },
-                                      [
-                                        _c(
-                                          "div",
-                                          { staticClass: "flex items-center" },
-                                          [
-                                            _c("div", [
+                            attrs: { repeat: 4 }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "table",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: !_vm.loading,
+                                  expression: "!loading"
+                                }
+                              ],
+                              staticClass: "min-w-full divide-y divide-gray-200"
+                            },
+                            [
+                              _vm._m(0),
+                              _vm._v(" "),
+                              _c(
+                                "tbody",
+                                {
+                                  staticClass:
+                                    "bg-white divide-y divide-gray-200"
+                                },
+                                [
+                                  _vm._l(_vm.hotels, function(hotel) {
+                                    return _c("tr", { key: hotel.id }, [
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass:
+                                            "px-6 py-4 whitespace-nowrap"
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "flex items-center"
+                                            },
+                                            [
+                                              _c("div", [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "text-sm font-medium text-gray-900"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                          " +
+                                                        _vm._s(hotel.name) +
+                                                        "\n                        "
+                                                    )
+                                                  ]
+                                                )
+                                              ])
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass:
+                                            "px-6 py-4 whitespace-nowrap"
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "text-sm text-gray-900"
+                                            },
+                                            [
                                               _c(
+                                                "span",
+                                                {
+                                                  staticClass: "flex flex-grow"
+                                                },
+                                                _vm._l(hotel.stars, function(
+                                                  i
+                                                ) {
+                                                  return _c(
+                                                    "svg",
+                                                    {
+                                                      key: i,
+                                                      staticClass:
+                                                        "h-4 w-4 text-yellow-400",
+                                                      attrs: {
+                                                        xmlns:
+                                                          "http://www.w3.org/2000/svg",
+                                                        fill: "none",
+                                                        viewBox: "0 0 24 24",
+                                                        stroke: "currentColor"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("path", {
+                                                        attrs: {
+                                                          "stroke-linecap":
+                                                            "round",
+                                                          "stroke-linejoin":
+                                                            "round",
+                                                          "stroke-width": "2",
+                                                          d:
+                                                            "M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                                                        }
+                                                      })
+                                                    ]
+                                                  )
+                                                }),
+                                                0
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass:
+                                            "px-6 py-4 whitespace-nowrap"
+                                        },
+                                        [
+                                          hotel.address
+                                            ? _c(
                                                 "div",
                                                 {
                                                   staticClass:
-                                                    "text-sm font-medium text-gray-900"
+                                                    "text-sm text-gray-900"
+                                                },
+                                                [_vm._v(_vm._s(hotel.address))]
+                                              )
+                                            : _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "text-sm text-gray-900"
+                                                },
+                                                [_vm._v("N/A")]
+                                              )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass:
+                                            "px-6 py-4 whitespace-nowrap text-sm font-medium flex flex-row justify-between"
+                                        },
+                                        [
+                                          _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "text-blue-500 hover:text-blue-900 hover:underline cursor-pointer",
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.editHotels(hotel)
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "svg",
+                                                {
+                                                  staticClass: "h-6 w-6",
+                                                  attrs: {
+                                                    xmlns:
+                                                      "http://www.w3.org/2000/svg",
+                                                    fill: "none",
+                                                    viewBox: "0 0 24 24",
+                                                    stroke: "currentColor"
+                                                  }
                                                 },
                                                 [
-                                                  _vm._v(
-                                                    "\n                          " +
-                                                      _vm._s(hotel.name) +
-                                                      "\n                        "
-                                                  )
+                                                  _c("path", {
+                                                    attrs: {
+                                                      "stroke-linecap": "round",
+                                                      "stroke-linejoin":
+                                                        "round",
+                                                      "stroke-width": "2",
+                                                      d:
+                                                        "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                                                    }
+                                                  })
                                                 ]
                                               )
-                                            ])
-                                          ]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      {
-                                        staticClass:
-                                          "px-6 py-4 whitespace-nowrap"
-                                      },
-                                      [
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass: "text-sm text-gray-900"
-                                          },
-                                          [
-                                            _c(
-                                              "span",
-                                              { staticClass: "flex flex-grow" },
-                                              _vm._l(hotel.stars, function(i) {
-                                                return _c(
-                                                  "svg",
-                                                  {
-                                                    key: i,
-                                                    staticClass:
-                                                      "h-4 w-4 text-yellow-400",
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "text-red-500 hover:text-red-600 hover:underline cursor-pointer",
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.deleteHotels(
+                                                    hotel.id
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "svg",
+                                                {
+                                                  staticClass: "h-6 w-6",
+                                                  attrs: {
+                                                    xmlns:
+                                                      "http://www.w3.org/2000/svg",
+                                                    fill: "none",
+                                                    viewBox: "0 0 24 24",
+                                                    stroke: "currentColor"
+                                                  }
+                                                },
+                                                [
+                                                  _c("path", {
                                                     attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg",
-                                                      fill: "none",
-                                                      viewBox: "0 0 24 24",
-                                                      stroke: "currentColor"
+                                                      "stroke-linecap": "round",
+                                                      "stroke-linejoin":
+                                                        "round",
+                                                      "stroke-width": "2",
+                                                      d:
+                                                        "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                                                     }
-                                                  },
-                                                  [
-                                                    _c("path", {
-                                                      attrs: {
-                                                        "stroke-linecap":
-                                                          "round",
-                                                        "stroke-linejoin":
-                                                          "round",
-                                                        "stroke-width": "2",
-                                                        d:
-                                                          "M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                                                      }
-                                                    })
-                                                  ]
-                                                )
-                                              }),
-                                              0
-                                            )
-                                          ]
-                                        )
+                                                  })
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ])
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "tr",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "show",
+                                          rawName: "v-show",
+                                          value:
+                                            !_vm.loading && !_vm.hotels.length,
+                                          expression:
+                                            "!loading && !hotels.length"
+                                        }
                                       ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      {
-                                        staticClass:
-                                          "px-6 py-4 whitespace-nowrap"
-                                      },
-                                      [
-                                        hotel.address
-                                          ? _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "text-sm text-gray-900"
-                                              },
-                                              [_vm._v(_vm._s(hotel.address))]
-                                            )
-                                          : _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "text-sm text-gray-900"
-                                              },
-                                              [_vm._v("N/A")]
-                                            )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      {
-                                        staticClass:
-                                          "px-6 py-4 whitespace-nowrap text-sm font-medium flex flex-row justify-between"
-                                      },
-                                      [
-                                        _c(
-                                          "span",
-                                          {
-                                            staticClass:
-                                              "text-blue-500 hover:text-blue-900 hover:underline cursor-pointer",
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.editHotels(hotel)
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _c(
-                                              "svg",
-                                              {
-                                                staticClass: "h-6 w-6",
-                                                attrs: {
-                                                  xmlns:
-                                                    "http://www.w3.org/2000/svg",
-                                                  fill: "none",
-                                                  viewBox: "0 0 24 24",
-                                                  stroke: "currentColor"
-                                                }
-                                              },
-                                              [
-                                                _c("path", {
-                                                  attrs: {
-                                                    "stroke-linecap": "round",
-                                                    "stroke-linejoin": "round",
-                                                    "stroke-width": "2",
-                                                    d:
-                                                      "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                                                  }
-                                                })
-                                              ]
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "span",
-                                          {
-                                            staticClass:
-                                              "text-red-500 hover:text-red-600 hover:underline cursor-pointer",
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.deleteHotels(
-                                                  hotel.id
-                                                )
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _c(
-                                              "svg",
-                                              {
-                                                staticClass: "h-6 w-6",
-                                                attrs: {
-                                                  xmlns:
-                                                    "http://www.w3.org/2000/svg",
-                                                  fill: "none",
-                                                  viewBox: "0 0 24 24",
-                                                  stroke: "currentColor"
-                                                }
-                                              },
-                                              [
-                                                _c("path", {
-                                                  attrs: {
-                                                    "stroke-linecap": "round",
-                                                    "stroke-linejoin": "round",
-                                                    "stroke-width": "2",
-                                                    d:
-                                                      "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                                                  }
-                                                })
-                                              ]
-                                            )
-                                          ]
-                                        )
-                                      ]
-                                    )
-                                  ])
-                                }),
-                                _vm._v(" "),
-                                _c(
-                                  "tr",
-                                  {
-                                    directives: [
-                                      {
-                                        name: "show",
-                                        rawName: "v-show",
-                                        value:
-                                          !_vm.loading && !_vm.hotels.length,
-                                        expression: "!loading && !hotels.length"
-                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass:
+                                            "px-3 py-3 uppercase text-center font-medium text-xs leading-5 text-gray-600",
+                                          attrs: { colspan: "6" }
+                                        },
+                                        [_vm._v("no data")]
+                                      )
                                     ]
-                                  },
-                                  [
-                                    _c(
-                                      "td",
-                                      {
-                                        staticClass:
-                                          "px-3 py-3 uppercase text-center font-medium text-xs leading-5 text-gray-600",
-                                        attrs: { colspan: "6" }
-                                      },
-                                      [_vm._v("no data")]
-                                    )
-                                  ]
-                                )
-                              ],
-                              2
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    )
-                  ]
-                )
-              ]
-            )
+                                  )
+                                ],
+                                2
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ]
+                  )
+                ]
+              )
+            ])
           ])
-        ])
-      ]
-    )
-  ])
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = [
   function() {

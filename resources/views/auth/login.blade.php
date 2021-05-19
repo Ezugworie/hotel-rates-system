@@ -2,14 +2,14 @@
 
 @section('content')
 <div class="w-full">
-    <div class="flex flex-row w-full h-screen items-center justify-evenly">
+    <div class="flex flex-row w-full h-screen items-center justify-evenly bg-gray-50">
         <!-- <div 
             class="h-screen hidden md:flex justify-center w-3/5 bg-gray-500 bg-no-repeat bg-cover relative items-center login--background"
             >
            
         </div> -->
-        <img class="inset-0  hidden md:flex justify-center w-3/5" src="{{ URL::to('/assets/svgs/hotel.svg') }}">
-        <div class="w-1/4 flex flex-col items-center justify-self-center py-10 mx-5 border rounded shadow-md">
+        <img class="inset-0  hidden md:flex justify-center w-1/2" src="{{ URL::to('/assets/svgs/hotel.svg') }}">
+        <div class="w-1/4 flex flex-col items-center justify-self-center py-10 mx-5 border rounded shadow-md bg-white">
             <span class="text-3xl font-medium uppercase self-center text-gray-500"> {{ __('Admin Login') }}</span>
             <form method="POST" action="{{ route('login') }}" class="w-full flex flex-col self-center justify-center p-8">
                 @csrf

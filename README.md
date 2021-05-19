@@ -1,6 +1,6 @@
    ## To Setup Project 
    
-   * Chnge the .env file and include your DB credentials
+   * Change the .env file and include your DB credentials
    * run the follwing commands
 
   ```

@@ -1,8 +1,8 @@
 <template>
-  <div class="flex flex-col w-full justify-center items-center text-gray-500">
-      <span class="text-lg font-medium uppercase self-center my-5 text-gray-500">Hotel Rate Search</span>
-      <div class="w-full flex justify-center spacce-x-5">
-        <div class="w-1/4 justify-center border rounded-md shadow p-10">
+  <div class="flex flex-col w-full justify-center items-center text-gray-500 bg-gray-50 h-screen">
+      <span class="text-lg font-medium uppercase self-center my-5 text-gray-500 bg-gray-50">Hotel Rate Search</span>
+      <div class="w-full flex justify-center spacce-x-5 bg-gray-50">
+        <div class="w-1/4 justify-center border rounded-md shadow p-10 bg-white">
           <form @submit.prevent="" class="self-center">
             <div class="mb-3">
               <label for="startDate" class="mb-3">Check-in Date </label>
@@ -90,7 +90,7 @@
             </button>
           </form>
         </div>
-        <div class="w-1/4 flex flex-col justify-items-center justify-center border font-medium text-xl items-center rounded-md space-y-5 shadow p-10">
+        <div class="w-1/4 flex flex-col justify-items-center bg-white justify-center border font-medium text-xl items-center rounded-md space-y-5 shadow p-10">
           <div>Per Adult Rate: $</div>
           <div>Per Child Rate: $</div>
           <div>Total: $</div>
