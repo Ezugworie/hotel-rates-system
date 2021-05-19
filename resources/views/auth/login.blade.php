@@ -2,11 +2,16 @@
 
 @section('content')
 <div class="w-full">
-    <div class="flex flex-row justify-center h-screen items-center">
-        <div class="hidden md:flex w-1/2">gi</div>
-        <div class="w-full md:w-1/4 flex flex-col items-center border rounded-md py-10 mx-5 shadow">
-            <span class="text-lg font-medium uppercase self-center text-gray-500"> {{ __('Admin Login') }}</span>
-            <form method="POST" action="{{ route('login') }}" class="w-full flex flex-col self-center p-8">
+    <div class="flex flex-row w-full h-screen items-center justify-evenly">
+        <!-- <div 
+            class="h-screen hidden md:flex justify-center w-3/5 bg-gray-500 bg-no-repeat bg-cover relative items-center login--background"
+            >
+           
+        </div> -->
+        <img class="inset-0  hidden md:flex justify-center w-3/5" src="{{ URL::to('/assets/svgs/hotel.svg') }}">
+        <div class="w-1/4 flex flex-col items-center justify-self-center py-10 mx-5 border rounded shadow-md">
+            <span class="text-3xl font-medium uppercase self-center text-gray-500"> {{ __('Admin Login') }}</span>
+            <form method="POST" action="{{ route('login') }}" class="w-full flex flex-col self-center justify-center p-8">
                 @csrf
 
                 <div class="mb-3">
@@ -18,7 +23,7 @@
                             type="email" 
                             class="focus:outline-none 
                                     focus:ring ring-gray-200 border-2 
-                                    rounded-md w-full p-2 @error('email') 
+                                    rounded-md w-full p-3 @error('email') 
                                     is-invalid @enderror" 
                             name="email" 
                             value="{{ old('email') }}" 
@@ -41,7 +46,7 @@
                             type="password" 
                             class="focus:outline-none focus:ring ring-gray-200 
                                     border 
-                                    rounded-md w-full p-2 
+                                    rounded-md w-full p-3 
                                     @error('password') 
                                     is-invalid @enderror"
                             name="password" 
@@ -59,18 +64,13 @@
                     type="submit" 
                     class="w-full bg-gray-500 mt-6
                             text-gray-50 
-                            rounded-md p-2
+                            rounded-md p-3
                             hover:bg-gray-700 focus:outline-none
                             shadow
                             focus:ring-2 focus:ring-gray-600 
                             focus:ring-opacity-50">
                     {{ __('Login') }}
                 </button>
-                <div class="mt-3">
-                    <span>{{ __('Don\'t have account?') }}</span>
-                    <a class="underline" href="{{ route('register') }}">{{ __('Register Here') }}</a>
-
-                </div>
             </form>
         </div>
     </div>

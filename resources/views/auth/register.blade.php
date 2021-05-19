@@ -3,10 +3,15 @@
 @section('content')
 
 <div class="w-full">
-    <div class="flex justify-center items-center">
-        <div class="w-full md:w-1/4 flex flex-col justify-center border rounded-md py-10 mx-5 shadow">
-            <span class="text-lg font-medium uppercase self-center">Register</span>
-            <form method="POST" action="{{ route('register') }}" class="w-full flex flex-col self-center p-8">
+<div class="flex flex-row w-full h-screen items-center">
+        <div 
+            class="h-screen hidden md:flex justify-center w-3/5 bg-gray-500 bg-no-repeat bg-cover relative items-center login--background"
+            >
+            <div class="absolute bg-black opacity-40 inset-0 z-0"></div>    
+        </div>
+        <div class="w-2/5 flex flex-col items-center justify-center py-10 mx-5">
+            <span class="text-3xl font-medium uppercase self-center text-gray-500">Register</span>
+            <form method="POST" action="{{ route('register') }}" class="w-3/5 flex flex-col self-center justify-center p-8">
                 @csrf
 
                 <div class="mb-3">
@@ -17,8 +22,8 @@
                             id="name" 
                             type="text" 
                             class="focus:outline-none 
-                                    focus:ring ring-gray-200 border border-2 
-                                    rounded-md w-full p-2 @error('name') 
+                                    focus:ring ring-gray-200  border-2 
+                                    rounded-md w-full p-3 @error('name') 
                                     is-invalid @enderror" 
                             name="email" 
                             value="{{ old('name') }}" 
@@ -40,8 +45,8 @@
                             id="email" 
                             type="email" 
                             class="focus:outline-none 
-                                    focus:ring ring-gray-200 border border-2 
-                                    rounded-md w-full p-2 @error('email') 
+                                    focus:ring ring-gray-200 border-2 
+                                    rounded-md w-full p-3 @error('email') 
                                     is-invalid @enderror" 
                             name="email" 
                             value="{{ old('email') }}" 
@@ -65,7 +70,7 @@
                             type="password" 
                             class="focus:outline-none focus:ring ring-gray-200 
                                     border 
-                                    rounded-md w-full p-2 
+                                    rounded-md w-full p-3
                                     @error('password') 
                                     is-invalid @enderror"
                             name="password" 
@@ -88,7 +93,7 @@
                             type="password" 
                             class="focus:outline-none focus:ring ring-gray-200 
                                     border 
-                                    rounded-md w-full p-2 
+                                    rounded-md w-full p-3
                                     @error('password') 
                                     is-invalid @enderror"
                             name="password_confirmation" 
@@ -106,12 +111,12 @@
                     type="submit" 
                     class="w-full bg-gray-500 mt-6
                             text-gray-50 
-                            rounded-md p-2
+                            rounded-md p-3
                             hover:bg-gray-700 focus:outline-none
                             shadow
                             focus:ring-2 focus:ring-gray-600 
                             focus:ring-opacity-50">
-                    {{ __('Register') }}
+                    {{ __('Submit') }}
                 </button>
                 <div class="mt-3">
                     <span>{{ __('Already have account?') }}</span>

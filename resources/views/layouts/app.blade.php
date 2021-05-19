@@ -21,7 +21,7 @@
 </head>
 <body>
     <div id="app" class="min-h-screen">
-        <nav class="border bg-gray-500 shadow-sm flex w-full p-5">
+        <nav class="shadow-md z-50 bg-gray-500 flex w-full p-5">
             <div class="flex w-full flex-row justify-between">
                 <a class="text-gray-50 self-center ml-5 font-semibold text-lg uppercase" href="{{ url('/') }}">
                     {{ __('Hotel Rates System') }}
@@ -35,19 +35,19 @@
                         @guest
                             @if (Route::has('login'))
                                 <li>
-                                    <a class="hover:text-gray-500 hover:bg-gray-50 shadow-md text-white uppercase border border-white rounded px-4 py-1" 
+                                    <a class="flex hover:text-gray-500 hover:bg-gray-50 shadow-md text-white lowercase border border-white rounded px-4 py-1" 
                                     href="{{ route('login') }}">
-                                        {{ __('Login') }}</a>
+                                        {{ __('Login') }}
+                                    
+                                    <span class="ml-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                                        </svg>
+                                    </span>
+                                    </a>
                                 </li>
                             @endif
 
-                            @if (Route::has('register'))
-                            <li class="">
-                                    <a class="hover:text-gray-500 hover:bg-gray-50 shadow-md text-white uppercase border border-white rounded px-4 py-1" 
-                                    href="{{ route('register') }}">
-                                        {{ __('Register') }}</a>
-                                </li>
-                            @endif
                         @else
                             <li class="flex space-x-5">
                             <span class="flex text-white Capitalize px-4 py-1">

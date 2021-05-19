@@ -84,7 +84,7 @@
 
       <div class="mt-5 justify-start flex w-2/5 text-gray-600 hover:underline">
         <router-link to="/home/hotel-rate" class="text-left  uppercase flex font-semibold items-center">
-          <span>Go to Rates</span>
+          <span>Add Rates</span>
           <span>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
               <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
@@ -110,16 +110,16 @@
                 <table v-show="!loading" class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                   <tr>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
                       Name
                     </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
                       Stars
                     </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
                       Address
                     </th>
-                    <th scope="col" class=" px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" class=" px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
                       Actions
                     </th>
                   </tr>
@@ -161,6 +161,10 @@
                         </svg>
                       </span>
                     </td>
+                  </tr>
+
+                  <tr v-show="!loading && !hotels.length">
+                  <td class="px-3 py-3 uppercase text-center font-medium text-xs leading-5 text-gray-600" colspan="6">no data</td>
                   </tr>
                 </tbody>
               </table>

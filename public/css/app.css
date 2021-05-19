@@ -31831,6 +31831,10 @@ video {
   --tw-backdrop-sepia: sepia(100%);
 }
 
+.login--background {
+  background-image: url(/images/hotel.svg?d7ce794221e221d51004bc732f154c46);
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

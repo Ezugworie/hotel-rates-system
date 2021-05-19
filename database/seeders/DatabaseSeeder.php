@@ -16,10 +16,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        \App\Models\Hotel::factory(3)->create();
+        \App\Models\Rate::factory(3)->create();
+        
         $this->call([
             AdminSeeder::class,
-            HotelSeeder::class,
+            // HotelSeeder::class,
         ]);
     }
 }

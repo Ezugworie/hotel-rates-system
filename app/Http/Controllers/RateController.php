@@ -30,7 +30,8 @@ class RateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         $this->validate($request, [
             'start_date' => 'required|date',
@@ -152,11 +153,11 @@ class RateController extends Controller
         // }
         // return $allRates;
 
-        $dates = Rate::where('hotel_id','=',$request->get('hotel_id'))
-        ->whereBetween('start_date', array($request->start_date, $request->end_date))
-        ->whereBetween('end_date', array($request->start_date, $request->end_date))
-        ->get();
+        $someVariable = Input::get("some_variable");
 
+        $results = DB::select( DB::raw("SELECT * FROM some_table WHERE some_col = :somevariable"), array(
+            'somevariable' => $someVariable,
+            ));
         return $dates;
     }
 

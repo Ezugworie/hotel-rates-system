@@ -114,7 +114,7 @@
 
       <div class="mt-5 justify-start flex w-2/5 text-gray-600 hover:underline">
         <router-link to="/home" class="text-left  uppercase flex font-semibold items-center">
-          <span>Go to Hotels</span>
+          <span>Create Hotels</span>
           <span>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -138,9 +138,9 @@
               <table v-show="!loading" class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                   <tr>
-                    <!-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Hotel
-                    </th> -->
+                    <th scope="col" class="pl-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Hotel ID
+                    </th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Date Range
                     </th>
@@ -156,10 +156,10 @@
                   </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                  <tr v-for="rate in rates" :key="rate.id">
-                  <!-- <td class="px-6 py-4 whitespace-nowrap">
-                      <div class="text-sm text-gray-800 font-medium">{{ rate.adult_rate }}</div>
-                    </td> -->
+                  <tr v-if="rates" v-for="rate in rates" :key="rate.id">
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="text-sm text-gray-800 font-medium">{{ rate.hotel_id }}</div>
+                    </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                       <div class="flex">
                         <div>
@@ -188,6 +188,9 @@
                         </svg>
                       </span>
                     </td>
+                  </tr>
+                   <tr v-show="!loading && !rates.length">
+                    <td class="px-3 py-3 uppercase text-center font-medium text-xs leading-5 text-gray-600" colspan="6">no data</td>
                   </tr>
                 </tbody>
               </table>
@@ -229,7 +232,7 @@ export default {
         axios.post('/api/rates', this.$data.newRate)
              .then(response => {
                 console.log(response.data.message+'ERRORR')
-                notifyUserOfResponse(response.data.message)
+                this.notifyUserOfResponse(response.data.message)
                 this.fetchRates()
                 this.emptyForm(this.$data.newRate)
         }).catch(error => {
@@ -274,18 +277,17 @@ export default {
     },
 
     notifyUserOfResponse: function(message){
-        Swal.fire({
+        this.$swal({
           toast: true,
           icon: 'info',
           title: message,
-          animation: false,
-          position: 'bottom',
-          showConfirmButton: false,
-          timer: 3000,
+          animation: true,
+          position: 'top-right',
+          timer: 5000,
           timerProgressBar: true,
           didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            toast.addEventListener('mouseenter', this.$swal.stopTimer)
+            toast.addEventListener('mouseleave', this.$swal.resumeTimer)
           } 
         })
         
@@ -323,6 +325,18 @@ export default {
               this.hotels = response.data
             })
     },
+
+   fetchHotel: function(id) {
+      this.loading = true;
+      var hotelName = ''
+        axios.get(`/api/hotels/${id}`)
+          .then(response => {
+            console.log(response.data)
+           hotelName = response.data.name
+           this.loading = false
+          })
+          return hotelName
+  },
 
     formatDate: function(date) {
       return format(parseISO(date), 'do MMM, yyyy')
