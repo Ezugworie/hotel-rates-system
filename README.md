@@ -1,13 +1,15 @@
    ## To Setup Project 
    
    * Chnge the .env file and include your DB credentials
+   * run the follwing commands
 
-```
-       php artisan key:generate
-       php artisan migrate
-       php artisan db:seed
   ```
-  
+  php artisan key:generate &&
+  php artisan migrate &&
+  php artisan db:seed
+  ```
+ * use the credentials below to login
+
   ### Admin Login
   
   ```
