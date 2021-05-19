@@ -11,7 +11,7 @@
   ### Admin Login
   
   ```
-  email: admin@anglara.com
+  email: admin@hotels.com
   password: password
   ```
   
