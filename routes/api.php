@@ -28,5 +28,6 @@ Route::apiResource('hotels', HotelController::class);
 Route::apiResource('rates', RateController::class);
 
 Route::post('/rates/search', [RateController::class, 'search'])->name('search');
+Route::get('/rates/hotels', [RateController::class, 'show'])->name('hotels');
 
 

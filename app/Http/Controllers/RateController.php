@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Rate;
+use App\Models\Hotel;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Support\Facades\DB;
@@ -38,8 +39,8 @@ class RateController extends Controller
         $this->validate($request, [
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',
-            'adult_rate' => 'required',
-            'child_rate' => 'required',
+            'adult_rate' => 'required|numeric',
+            'child_rate' => 'required|numeric',
             'hotel_id' => 'required'
         ]);
   
@@ -90,13 +91,11 @@ class RateController extends Controller
        
         if (Rate::where('id', $id)->exists()) {
             $rate = Rate::find($id);
-            $rate->start_date =  $request->get('start_date');
-            $rate->end_date = $request->get('end_date');
             $rate->adult_rate = $request->get('adult_rate');
             $rate->child_rate = $request->get('child_rate');
             
             $rate->save();
-            return response()->json(['message' => 'Ratet Updated', 'Rate' => $rate]);
+            return response()->json(['message' => 'Rate Updated', 'Rate' => $rate]);
         }else {
             return response()->json([
                 "message" => "Rate not found"
@@ -204,8 +203,15 @@ class RateController extends Controller
         ]);
     }
 
-    protected function formatDate($date){
+    protected function formatDate($date) {
         $date = Carbon::createFromFormat('Y-m-d', $date);
         return $date;
+    }
+
+    protected function show() {
+
+        $hotels = Hotel::with('rates')->has('rates')->get();
+        
+    return $hotels;
     }
 }

@@ -1989,6 +1989,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2003,11 +2018,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    fetchHotels: function fetchHotels() {
+    fetchHotelsWithRates: function fetchHotelsWithRates() {
       var _this = this;
 
       console.log("Fetching Hotels in Rates");
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/hotels').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/rates/hotels').then(function (response) {
         _this.hotels = response.data;
       });
     },
@@ -2018,8 +2033,6 @@ __webpack_require__.r(__webpack_exports__);
       console.log("searching for Rates");
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/rates/search', this.$data.searchRequest).then(function (response) {
         _this2.$data.searchResult = response.data;
-      }).then(function () {
-        _this2.$data.hotel = _this2.$data.hotels[_this2.$data.searchRequest.hotel_id].name;
       });
       this.$data.loading = false;
       console.log(this.$data.searchResult);
@@ -2027,7 +2040,7 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   mounted: function mounted() {
-    this.fetchHotels();
+    this.fetchHotelsWithRates();
   }
 });
 
@@ -2086,6 +2099,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/format/index.js");
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/parseISO/index.js");
 /* harmony import */ var _shared_tableSkeleton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shared/tableSkeleton */ "./resources/js/components/shared/tableSkeleton.vue");
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2457,6 +2476,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _shared_tableSkeleton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shared/tableSkeleton */ "./resources/js/components/shared/tableSkeleton.vue");
+//
 //
 //
 //
@@ -14588,7 +14608,7 @@ var render = function() {
                     "button",
                     {
                       staticClass:
-                        "w-full bg-gray-500 mt-5 \n                        text-gray-50 \n                        rounded-md p-2\n                        hover:bg-gray-700 focus:outline-none\n                        shadow\n                        focus:ring-2 focus:ring-gray-600 \n                        focus:ring-opacity-50",
+                        "w-full bg-gray-500 mt-5 \n                        text-gray-50 \n                        rounded-md p-2\n                        hover:bg-gray-700 focus:outline-none\n                        shadow\n                        focus:ring-2 focus:ring-gray-600 \n                        focus:ring-opacity-50 uppercase",
                       attrs: { type: "submit" }
                     },
                     [_vm._v("\n            Search Rates\n          ")]
@@ -14598,99 +14618,145 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _c(
-            "div",
-            {
-              directives: [
+          _vm.searchResult.total_rate
+            ? _c(
+                "div",
                 {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.searchResult.total_rate,
-                  expression: "searchResult.total_rate"
-                }
-              ],
-              staticClass:
-                "w-1/4 flex flex-col justify-items-center bg-white justify-center border font-medium text-xl items-center rounded-md space-y-5 shadow p-10"
-            },
-            [
-              _c("p", { staticClass: "text-center" }, [
-                _vm._v("Rates for "),
-                _c("br"),
-                _vm._v(" " + _vm._s(_vm.hotel) + " "),
-                _c("br"),
-                _vm._v(" Hotel is:")
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _vm._v(
-                  "Per Adult Rate: " +
-                    _vm._s(
-                      _vm.formatMoney(_vm.searchResult.per_adult_rate) || 0
-                    ) +
-                    " "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _vm._v(
-                  "Per Child Rate: " +
-                    _vm._s(
-                      _vm.formatMoney(_vm.searchResult.per_child_rate) || 0
-                    )
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _vm._v(
-                  "Total: " +
-                    _vm._s(_vm.formatMoney(_vm.searchResult.total_rate) || 0)
-                )
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              directives: [
+                  staticClass:
+                    "w-1/4 flex flex-col justify-items-center bg-white justify-center border font-medium text-xl items-center rounded-md space-y-5 shadow p-10"
+                },
+                [
+                  _vm.loading
+                    ? _c("div", { staticClass: "animate-bounce" }, [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "h-20 w-20",
+                            attrs: {
+                              xmlns: "http://www.w3.org/2000/svg",
+                              fill: "none",
+                              viewBox: "0 0 24 24",
+                              stroke: "currentColor"
+                            }
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round",
+                                "stroke-width": "2",
+                                d:
+                                  "M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                              }
+                            })
+                          ]
+                        )
+                      ])
+                    : _c("div", { staticClass: "text-center" }, [
+                        _c("div", [
+                          _vm._v(
+                            "Per Adult Rate: " +
+                              _vm._s(
+                                _vm.formatMoney(
+                                  _vm.searchResult.per_adult_rate
+                                ) || 0
+                              ) +
+                              " "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", [
+                          _vm._v(
+                            "Per Child Rate: " +
+                              _vm._s(
+                                _vm.formatMoney(
+                                  _vm.searchResult.per_child_rate
+                                ) || 0
+                              )
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", [
+                          _vm._v(
+                            "Total: " +
+                              _vm._s(
+                                _vm.formatMoney(_vm.searchResult.total_rate) ||
+                                  0
+                              )
+                          )
+                        ])
+                      ])
+                ]
+              )
+            : _c(
+                "div",
                 {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.loading,
-                  expression: "loading"
-                }
-              ],
-              staticClass:
-                "w-1/4 flex flex-col justify-items-center bg-white justify-center border  font-medium text-xl items-center rounded-md space-y-5 shadow p-10"
-            },
-            [
-              _c("div", { staticClass: "animate-bounce" }, [
-                _c(
-                  "svg",
-                  {
-                    staticClass: "h-20 w-20",
-                    attrs: {
-                      xmlns: "http://www.w3.org/2000/svg",
-                      fill: "none",
-                      viewBox: "0 0 24 24",
-                      stroke: "currentColor"
-                    }
-                  },
-                  [
-                    _c("path", {
-                      attrs: {
-                        "stroke-linecap": "round",
-                        "stroke-linejoin": "round",
-                        "stroke-width": "2",
-                        d:
-                          "M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                      }
-                    })
-                  ]
-                )
-              ])
-            ]
-          )
+                  staticClass:
+                    "w-1/4 flex flex-col justify-items-center bg-white justify-center border font-medium text-xl items-center rounded-md space-y-5 shadow p-10"
+                },
+                [
+                  _vm.loading
+                    ? _c("div", { staticClass: "animate-bounce" }, [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "h-20 w-20",
+                            attrs: {
+                              xmlns: "http://www.w3.org/2000/svg",
+                              fill: "none",
+                              viewBox: "0 0 24 24",
+                              stroke: "currentColor"
+                            }
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round",
+                                "stroke-width": "2",
+                                d:
+                                  "M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                              }
+                            })
+                          ]
+                        )
+                      ])
+                    : _c("div", { staticClass: "text-center" }, [
+                        _c("div", [
+                          _vm._v(
+                            "Per Adult Rate: " +
+                              _vm._s(
+                                _vm.formatMoney(
+                                  _vm.searchResult.per_adult_rate
+                                ) || 0
+                              ) +
+                              " "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", [
+                          _vm._v(
+                            "Per Child Rate: " +
+                              _vm._s(
+                                _vm.formatMoney(
+                                  _vm.searchResult.per_child_rate
+                                ) || 0
+                              )
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", [
+                          _vm._v(
+                            "Total: " +
+                              _vm._s(
+                                _vm.formatMoney(_vm.searchResult.total_rate) ||
+                                  0
+                              )
+                          )
+                        ])
+                      ])
+                ]
+              )
         ]
       )
     ]
@@ -14833,10 +14899,14 @@ var render = function() {
                         ],
                         staticClass:
                           "focus:outline-none \n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
+                        class: {
+                          "bg-gray-100 cursor-not-allowed": !_vm.creatingRateMode
+                        },
                         attrs: {
                           required: "",
                           type: "date",
                           name: "startDate",
+                          disabled: !_vm.creatingRateMode,
                           max: _vm.newRate.end_date
                         },
                         domProps: { value: _vm.newRate.start_date },
@@ -14875,10 +14945,14 @@ var render = function() {
                         ],
                         staticClass:
                           "focus:outline-none \n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
+                        class: {
+                          "bg-gray-100 cursor-not-allowed": !_vm.creatingRateMode
+                        },
                         attrs: {
                           required: "",
                           type: "date",
                           name: "endDate",
+                          disabled: !_vm.creatingRateMode,
                           min: _vm.newRate.start_date
                         },
                         domProps: { value: _vm.newRate.end_date },
@@ -15001,7 +15075,15 @@ var render = function() {
                           ],
                           staticClass:
                             "focus:outline-none\n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
-                          attrs: { required: "", type: "", name: "hotel" },
+                          class: {
+                            "bg-gray-200 cursor-not-allowed": !_vm.creatingRateMode
+                          },
+                          attrs: {
+                            required: "",
+                            type: "",
+                            name: "hotel",
+                            disabled: !_vm.creatingRateMode
+                          },
                           on: {
                             change: function($event) {
                               var $$selectedVal = Array.prototype.filter
@@ -15557,14 +15639,23 @@ var render = function() {
                 "w-full md:w-2/4 justify-center p-5 border rounded-md shadow-md bg-white"
             },
             [
-              _c(
-                "span",
-                {
-                  staticClass:
-                    "text-lg font-medium uppercase self-center my-5 text-gray-500"
-                },
-                [_vm._v("Create Hotel")]
-              ),
+              _vm.creatingHotelMode
+                ? _c(
+                    "span",
+                    {
+                      staticClass:
+                        "text-lg font-medium uppercase self-center my-5 text-gray-500"
+                    },
+                    [_vm._v("Create Hotel")]
+                  )
+                : _c(
+                    "span",
+                    {
+                      staticClass:
+                        "text-lg font-medium uppercase self-center my-5 text-gray-500"
+                    },
+                    [_vm._v("Update Hotel")]
+                  ),
               _vm._v(" "),
               _c(
                 "form",

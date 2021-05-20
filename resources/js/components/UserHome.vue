@@ -92,26 +92,41 @@
                           hover:bg-gray-700 focus:outline-none
                           shadow
                           focus:ring-2 focus:ring-gray-600 
-                          focus:ring-opacity-50">
+                          focus:ring-opacity-50 uppercase">
               Search Rates
             </button>
           </form>
         </div>
-        <div v-show="searchResult.total_rate" class="w-1/4 flex flex-col justify-items-center bg-white justify-center border font-medium text-xl items-center rounded-md space-y-5 shadow p-10">
-          <p class="text-center">Rates for <br> {{ hotel }} <br> Hotel is:</p>
+        <div v-if="searchResult.total_rate" class="w-1/4 flex flex-col justify-items-center bg-white justify-center border font-medium text-xl items-center rounded-md space-y-5 shadow p-10">
           
-          <div>Per Adult Rate: {{ formatMoney(searchResult.per_adult_rate) || 0}} </div>
-          <div>Per Child Rate: {{ formatMoney(searchResult.per_child_rate) || 0}}</div>
-          <div>Total: {{ formatMoney(searchResult.total_rate) || 0}}</div>
-        </div>
-
-        <div v-show="loading" class="w-1/4 flex flex-col justify-items-center bg-white justify-center border  font-medium text-xl items-center rounded-md space-y-5 shadow p-10">
-          <div class="animate-bounce">
+          <div v-if="loading" class="animate-bounce">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
+
+          <div v-else class="text-center">         
+            <div>Per Adult Rate: {{ formatMoney(searchResult.per_adult_rate) || 0}} </div>
+            <div>Per Child Rate: {{ formatMoney(searchResult.per_child_rate) || 0}}</div>
+              <div>Total: {{ formatMoney(searchResult.total_rate) || 0}}</div>
+          </div>
         </div>
+        <div v-else class="w-1/4 flex flex-col justify-items-center bg-white justify-center border font-medium text-xl items-center rounded-md space-y-5 shadow p-10">
+          
+          <div v-if="loading" class="animate-bounce">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+
+          <div v-else class="text-center">
+            <div>Per Adult Rate: {{ formatMoney(searchResult.per_adult_rate) || 0}} </div>
+            <div>Per Child Rate: {{ formatMoney(searchResult.per_child_rate) || 0}}</div>
+              <div>Total: {{ formatMoney(searchResult.total_rate) || 0}}</div>
+          </div>
+        </div>
+
+       
       </div>
   </div>
 </template>
@@ -132,9 +147,9 @@ export default {
     } 
   },
   methods: {
-    fetchHotels: function() {
+    fetchHotelsWithRates: function() {
       console.log("Fetching Hotels in Rates")
-      axios.get('/api/hotels')
+      axios.get('/api/rates/hotels')
            .then(response => {
               this.hotels = response.data
             })
@@ -146,9 +161,7 @@ export default {
       axios.post('/api/rates/search', this.$data.searchRequest)
            .then(response => {
               this.$data.searchResult = response.data
-           }).then(() => {
-              this.$data.hotel = this.$data.hotels[this.$data.searchRequest.hotel_id].name
-             })
+           })
           this.$data.loading = false
               console.log(this.$data.searchResult)
     },
@@ -156,7 +169,7 @@ export default {
     // searchedHotelInfo:
   },
   mounted() {
-    this.fetchHotels()
+    this.fetchHotelsWithRates()
   },
 }
 </script>

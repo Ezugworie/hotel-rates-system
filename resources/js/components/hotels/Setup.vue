@@ -3,7 +3,8 @@
 
     <div class="w-full p-4 md:w-1/2 flex flex-col justify-center items-center border-r">
       <div class="w-full md:w-2/4 justify-center p-5 border rounded-md shadow-md bg-white">
-          <span class="text-lg font-medium uppercase self-center my-5 text-gray-500">Create Hotel</span>
+          <span v-if="creatingHotelMode" class="text-lg font-medium uppercase self-center my-5 text-gray-500">Create Hotel</span>
+          <span v-else class="text-lg font-medium uppercase self-center my-5 text-gray-500">Update Hotel</span>
 
           <form @submit.prevent="createHotel()" class="mt-5 self-center">
             <div class="mb-3">

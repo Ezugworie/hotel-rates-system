@@ -12,6 +12,8 @@
               required
               type="date" 
               name="startDate"
+              :class="{'bg-gray-100 cursor-not-allowed': !creatingRateMode }"
+              :disabled="!creatingRateMode"
               :max="newRate.end_date"
               v-model="newRate.start_date"
               class="focus:outline-none 
@@ -28,6 +30,8 @@
               required
               type="date" 
               name="endDate"
+              :class="{'bg-gray-100 cursor-not-allowed': !creatingRateMode }"
+              :disabled="!creatingRateMode"
               :min="newRate.start_date"
               v-model="newRate.end_date"
               class="focus:outline-none 
@@ -74,6 +78,8 @@
               required
               type="" 
               name="hotel" 
+              :class="{'bg-gray-200 cursor-not-allowed': !creatingRateMode }"
+              :disabled="!creatingRateMode"
               v-model="newRate.hotel_id"
               class="focus:outline-none
                     focus:ring ring-gray-200 border-2 
