@@ -1870,6 +1870,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_index_ts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/index.ts */ "./resources/js/components/utils/index.ts");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1972,12 +1990,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       hotels: [],
-      today: new Date().toISOString().split("T")[0],
-      loading: false
+      loading: false,
+      searchRequest: _utils_index_ts__WEBPACK_IMPORTED_MODULE_1__.rateSearchObj,
+      searchResult: _utils_index_ts__WEBPACK_IMPORTED_MODULE_1__.searchResultObj,
+      formatMoney: _utils_index_ts__WEBPACK_IMPORTED_MODULE_1__.formatMoney,
+      hotel: ''
     };
   },
   methods: {
@@ -1988,11 +2010,24 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/hotels').then(function (response) {
         _this.hotels = response.data;
       });
-    }
+    },
+    searchRate: function searchRate() {
+      var _this2 = this;
+
+      this.$data.loading = true;
+      console.log("searching for Rates");
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/rates/search', this.$data.searchRequest).then(function (response) {
+        _this2.$data.searchResult = response.data;
+      }).then(function () {
+        _this2.$data.hotel = _this2.$data.hotels[_this2.$data.searchRequest.hotel_id].name;
+      });
+      this.$data.loading = false;
+      console.log(this.$data.searchResult);
+    } // searchedHotelInfo:
+
   },
   mounted: function mounted() {
     this.fetchHotels();
-    console.log('User home mounted');
   }
 });
 
@@ -2045,12 +2080,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _utils_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/index.js */ "./resources/js/components/utils/index.js");
+/* harmony import */ var _utils_index_ts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/index.ts */ "./resources/js/components/utils/index.ts");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/format/index.js");
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/parseISO/index.js");
 /* harmony import */ var _shared_tableSkeleton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shared/tableSkeleton */ "./resources/js/components/shared/tableSkeleton.vue");
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2267,7 +2308,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      newRate: _utils_index_js__WEBPACK_IMPORTED_MODULE_0__.rateObj,
+      newRate: _utils_index_ts__WEBPACK_IMPORTED_MODULE_0__.rateObj,
       rates: [],
       hotels: [],
       creatingRateMode: true,
@@ -2330,6 +2371,7 @@ __webpack_require__.r(__webpack_exports__);
         icon: 'info',
         title: message,
         animation: true,
+        showConfirmButton: false,
         position: 'top-right',
         timer: 5000,
         timerProgressBar: true,
@@ -2409,12 +2451,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _utils_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/index.js */ "./resources/js/components/utils/index.js");
+/* harmony import */ var _utils_index_ts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/index.ts */ "./resources/js/components/utils/index.ts");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _shared_tableSkeleton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shared/tableSkeleton */ "./resources/js/components/shared/tableSkeleton.vue");
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2606,7 +2654,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      newHotel: _utils_index_js__WEBPACK_IMPORTED_MODULE_0__.hotelObj,
+      newHotel: _utils_index_ts__WEBPACK_IMPORTED_MODULE_0__.hotelObj,
       hotels: [],
       creatingHotelMode: true,
       loading: false
@@ -2620,7 +2668,7 @@ __webpack_require__.r(__webpack_exports__);
         axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/hotels', this.$data.newHotel).then(function (response) {
           _this.fetchHotels();
 
-          _this.newHotel = _utils_index_js__WEBPACK_IMPORTED_MODULE_0__.hotelObj;
+          _this.newHotel = _utils_index_ts__WEBPACK_IMPORTED_MODULE_0__.hotelObj;
         })["catch"](function (error) {
           console.log(error.message);
         });
@@ -2628,7 +2676,7 @@ __webpack_require__.r(__webpack_exports__);
         axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/hotels/".concat(this.newHotel.id), this.$data.newHotel).then(function (response) {
           _this.fetchHotels();
 
-          _this.newHotel = _utils_index_js__WEBPACK_IMPORTED_MODULE_0__.hotelObj;
+          _this.newHotel = _utils_index_ts__WEBPACK_IMPORTED_MODULE_0__.hotelObj;
           _this.creatingHotelMode = true;
         });
       }
@@ -2775,9 +2823,9 @@ var app = new Vue({
 
 /***/ }),
 
-/***/ "./resources/js/components/utils/index.js":
+/***/ "./resources/js/components/utils/index.ts":
 /*!************************************************!*\
-  !*** ./resources/js/components/utils/index.js ***!
+  !*** ./resources/js/components/utils/index.ts ***!
   \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2785,7 +2833,12 @@ var app = new Vue({
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "hotelObj": () => (/* binding */ hotelObj),
-/* harmony export */   "rateObj": () => (/* binding */ rateObj)
+/* harmony export */   "rateObj": () => (/* binding */ rateObj),
+/* harmony export */   "rateSearchObj": () => (/* binding */ rateSearchObj),
+/* harmony export */   "searchResultObj": () => (/* binding */ searchResultObj),
+/* harmony export */   "formatMoney": () => (/* binding */ formatMoney),
+/* harmony export */   "chunkReverse": () => (/* binding */ chunkReverse),
+/* harmony export */   "chunk": () => (/* binding */ chunk)
 /* harmony export */ });
 var hotelObj = {
   name: '',
@@ -2798,6 +2851,53 @@ var rateObj = {
   adult_rate: '',
   child_rate: '',
   hotel_id: ''
+};
+var rateSearchObj = {
+  check_in_date: '',
+  check_out_date: '',
+  number_of_adults: '',
+  number_of_children: '',
+  hotel_id: ''
+};
+var searchResultObj = {
+  per_adult_rate: '',
+  per_child_rate: '',
+  total_adults_rate: '',
+  total_children_rate: '',
+  total_rate: ''
+};
+var formatMoney = function formatMoney(value) {
+  return "$".concat(chunkReverse(String(value), 3, ''));
+};
+var chunkReverse = function chunkReverse(str) {
+  var size = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 4;
+  var separator = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '-';
+  var start = str.length % size;
+  var parts = [str.substring(0, start)];
+
+  while (start < str.length) {
+    var part = str.substring(start, start + size);
+    parts.push(part);
+    start += size;
+  }
+
+  return parts.filter(function (val) {
+    return !!val;
+  }).join(separator);
+};
+var chunk = function chunk(str) {
+  var size = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 4;
+  var separator = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '-';
+  var index = 0;
+  var parts = [];
+
+  while (index < str.length) {
+    var part = str.substring(index, index + size);
+    parts.push(part);
+    index += size;
+  }
+
+  return parts.join(separator);
 };
 
 /***/ }),
@@ -14246,17 +14346,178 @@ var render = function() {
                   on: {
                     submit: function($event) {
                       $event.preventDefault()
+                      return _vm.searchRate()
                     }
                   }
                 },
                 [
-                  _vm._m(0),
+                  _c("div", { staticClass: "mb-3" }, [
+                    _c(
+                      "label",
+                      { staticClass: "mb-3", attrs: { for: "startDate" } },
+                      [_vm._v("Check-in Date ")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.searchRequest.check_in_date,
+                            expression: "searchRequest.check_in_date"
+                          }
+                        ],
+                        staticClass:
+                          "focus:outline-none \n                      focus:ring ring-gray-200 border-2 \n                      rounded-md w-full p-2",
+                        attrs: {
+                          required: "",
+                          type: "date",
+                          name: "startDate",
+                          max: _vm.searchRequest.check_out_date
+                        },
+                        domProps: { value: _vm.searchRequest.check_in_date },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.searchRequest,
+                              "check_in_date",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]),
                   _vm._v(" "),
-                  _vm._m(1),
+                  _c("div", { staticClass: "mb-3" }, [
+                    _c(
+                      "label",
+                      { staticClass: "mb-3", attrs: { for: "endDate" } },
+                      [_vm._v("Check-out Date ")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.searchRequest.check_out_date,
+                            expression: "searchRequest.check_out_date"
+                          }
+                        ],
+                        staticClass:
+                          "focus:outline-none \n                      focus:ring ring-gray-200 border-2 \n                      rounded-md w-full p-2",
+                        attrs: {
+                          required: "",
+                          type: "date",
+                          name: "endDate",
+                          min: _vm.searchRequest.check_in_date
+                        },
+                        domProps: { value: _vm.searchRequest.check_out_date },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.searchRequest,
+                              "check_out_date",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]),
                   _vm._v(" "),
-                  _vm._m(2),
+                  _c("div", { staticClass: "mb-3" }, [
+                    _c(
+                      "label",
+                      { staticClass: "mb-3", attrs: { for: "adultRate" } },
+                      [_vm._v("Number of Adults")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.searchRequest.number_of_adults,
+                            expression: "searchRequest.number_of_adults"
+                          }
+                        ],
+                        staticClass:
+                          "focus:outline-none \n                      focus:ring ring-gray-200 border-2 \n                      rounded-md w-full p-2",
+                        attrs: {
+                          required: "",
+                          type: "number",
+                          name: "adultRate"
+                        },
+                        domProps: { value: _vm.searchRequest.number_of_adults },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.searchRequest,
+                              "number_of_adults",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]),
                   _vm._v(" "),
-                  _vm._m(3),
+                  _c("div", { staticClass: "mb-3" }, [
+                    _c(
+                      "label",
+                      { staticClass: "mb-3", attrs: { for: "childRate" } },
+                      [_vm._v("Number of Children ")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.searchRequest.number_of_children,
+                            expression: "searchRequest.number_of_children"
+                          }
+                        ],
+                        staticClass:
+                          "focus:outline-none \n                      focus:ring ring-gray-200 border-2 \n                      rounded-md w-full p-2",
+                        attrs: {
+                          required: "",
+                          type: "number",
+                          name: "adultRate"
+                        },
+                        domProps: {
+                          value: _vm.searchRequest.number_of_children
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.searchRequest,
+                              "number_of_children",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "mb-3" }, [
                     _c(
@@ -14269,9 +14530,36 @@ var render = function() {
                       _c(
                         "select",
                         {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.searchRequest.hotel_id,
+                              expression: "searchRequest.hotel_id"
+                            }
+                          ],
                           staticClass:
                             "focus:outline-none\n                      focus:ring ring-gray-200 border-2 \n                      rounded-md w-full p-2",
-                          attrs: { required: "", type: "", name: "hotel" }
+                          attrs: { required: "", type: "", name: "hotel" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.searchRequest,
+                                "hotel_id",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
                         },
                         [
                           _c(
@@ -14310,105 +14598,105 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _vm._m(4)
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.searchResult.total_rate,
+                  expression: "searchResult.total_rate"
+                }
+              ],
+              staticClass:
+                "w-1/4 flex flex-col justify-items-center bg-white justify-center border font-medium text-xl items-center rounded-md space-y-5 shadow p-10"
+            },
+            [
+              _c("p", { staticClass: "text-center" }, [
+                _vm._v("Rates for "),
+                _c("br"),
+                _vm._v(" " + _vm._s(_vm.hotel) + " "),
+                _c("br"),
+                _vm._v(" Hotel is:")
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _vm._v(
+                  "Per Adult Rate: " +
+                    _vm._s(
+                      _vm.formatMoney(_vm.searchResult.per_adult_rate) || 0
+                    ) +
+                    " "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _vm._v(
+                  "Per Child Rate: " +
+                    _vm._s(
+                      _vm.formatMoney(_vm.searchResult.per_child_rate) || 0
+                    )
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _vm._v(
+                  "Total: " +
+                    _vm._s(_vm.formatMoney(_vm.searchResult.total_rate) || 0)
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.loading,
+                  expression: "loading"
+                }
+              ],
+              staticClass:
+                "w-1/4 flex flex-col justify-items-center bg-white justify-center border  font-medium text-xl items-center rounded-md space-y-5 shadow p-10"
+            },
+            [
+              _c("div", { staticClass: "animate-bounce" }, [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "h-20 w-20",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      fill: "none",
+                      viewBox: "0 0 24 24",
+                      stroke: "currentColor"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        "stroke-linecap": "round",
+                        "stroke-linejoin": "round",
+                        "stroke-width": "2",
+                        d:
+                          "M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      }
+                    })
+                  ]
+                )
+              ])
+            ]
+          )
         ]
       )
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mb-3" }, [
-      _c("label", { staticClass: "mb-3", attrs: { for: "startDate" } }, [
-        _vm._v("Check-in Date ")
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _c("input", {
-          staticClass:
-            "focus:outline-none \n                      focus:ring ring-gray-200 border-2 \n                      rounded-md w-full p-2",
-          attrs: { required: "", type: "date", name: "startDate" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mb-3" }, [
-      _c("label", { staticClass: "mb-3", attrs: { for: "endDate" } }, [
-        _vm._v("Check-out Date ")
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _c("input", {
-          staticClass:
-            "focus:outline-none \n                      focus:ring ring-gray-200 border-2 \n                      rounded-md w-full p-2",
-          attrs: { required: "", type: "date", name: "endDate" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mb-3" }, [
-      _c("label", { staticClass: "mb-3", attrs: { for: "adultRate" } }, [
-        _vm._v("Number of Adults")
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _c("input", {
-          staticClass:
-            "focus:outline-none \n                      focus:ring ring-gray-200 border-2 \n                      rounded-md w-full p-2",
-          attrs: { required: "", type: "number", name: "adultRate" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mb-3" }, [
-      _c("label", { staticClass: "mb-3", attrs: { for: "childRate" } }, [
-        _vm._v("Number of Children ")
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _c("input", {
-          staticClass:
-            "focus:outline-none \n                      focus:ring ring-gray-200 border-2 \n                      rounded-md w-full p-2",
-          attrs: { required: "", type: "number", name: "adultRate" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "w-1/4 flex flex-col justify-items-center bg-white justify-center border font-medium text-xl items-center rounded-md space-y-5 shadow p-10"
-      },
-      [
-        _c("div", [_vm._v("Per Adult Rate: $")]),
-        _vm._v(" "),
-        _c("div", [_vm._v("Per Child Rate: $")]),
-        _vm._v(" "),
-        _c("div", [_vm._v("Total: $")])
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -14490,300 +14778,343 @@ var render = function() {
         },
         [
           _c(
-            "span",
-            {
-              staticClass:
-                "text-lg font-medium uppercase self-center my-5 text-gray-500"
-            },
-            [_vm._v("Create Rate")]
-          ),
-          _vm._v(" "),
-          _c(
-            "form",
-            {
-              staticClass: "w-full md:w-2/5 self-center",
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  return _vm.createRate()
-                }
-              }
-            },
-            [
-              _c("div", { staticClass: "mb-3" }, [
-                _c(
-                  "label",
-                  { staticClass: "mb-3", attrs: { for: "startDate" } },
-                  [_vm._v("Start Date ")]
-                ),
-                _vm._v(" "),
-                _c("div", [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.newRate.start_date,
-                        expression: "newRate.start_date"
-                      }
-                    ],
-                    staticClass:
-                      "focus:outline-none \n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
-                    attrs: {
-                      required: "",
-                      type: "date",
-                      name: "startDate",
-                      max: _vm.newRate.end_date
-                    },
-                    domProps: { value: _vm.newRate.start_date },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.newRate, "start_date", $event.target.value)
-                      }
-                    }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "mb-3" }, [
-                _c(
-                  "label",
-                  { staticClass: "mb-3", attrs: { for: "endDate" } },
-                  [_vm._v("End Date ")]
-                ),
-                _vm._v(" "),
-                _c("div", [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.newRate.end_date,
-                        expression: "newRate.end_date"
-                      }
-                    ],
-                    staticClass:
-                      "focus:outline-none \n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
-                    attrs: {
-                      required: "",
-                      type: "date",
-                      name: "endDate",
-                      min: _vm.newRate.start_date
-                    },
-                    domProps: { value: _vm.newRate.end_date },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.newRate, "end_date", $event.target.value)
-                      }
-                    }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "mb-3" }, [
-                _c(
-                  "label",
-                  { staticClass: "mb-3", attrs: { for: "adultRate" } },
-                  [_vm._v("Adult Rate ")]
-                ),
-                _vm._v(" "),
-                _c("div", [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.newRate.adult_rate,
-                        expression: "newRate.adult_rate"
-                      }
-                    ],
-                    staticClass:
-                      "focus:outline-none \n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
-                    attrs: { required: "", type: "number", name: "adultRate" },
-                    domProps: { value: _vm.newRate.adult_rate },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.newRate, "adult_rate", $event.target.value)
-                      }
-                    }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "mb-3" }, [
-                _c(
-                  "label",
-                  { staticClass: "mb-3", attrs: { for: "childRate" } },
-                  [_vm._v("Child Rate ")]
-                ),
-                _vm._v(" "),
-                _c("div", [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.newRate.child_rate,
-                        expression: "newRate.child_rate"
-                      }
-                    ],
-                    staticClass:
-                      "focus:outline-none \n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
-                    attrs: { required: "", type: "number", name: "adultRate" },
-                    domProps: { value: _vm.newRate.child_rate },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.newRate, "child_rate", $event.target.value)
-                      }
-                    }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "mb-3" }, [
-                _c("label", { staticClass: "mb-3", attrs: { for: "hotel" } }, [
-                  _vm._v("Hotel ")
-                ]),
-                _vm._v(" "),
-                _c("div", [
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.newRate.hotel_id,
-                          expression: "newRate.hotel_id"
-                        }
-                      ],
-                      staticClass:
-                        "focus:outline-none\n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
-                      attrs: { required: "", type: "", name: "hotel" },
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.newRate,
-                            "hotel_id",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
-                      }
-                    },
-                    [
-                      _c(
-                        "option",
-                        {
-                          staticClass: "text-gray-400",
-                          attrs: { disabled: "", selected: "", value: "" }
-                        },
-                        [_vm._v("Please select one")]
-                      ),
-                      _vm._v(" "),
-                      _vm._l(_vm.hotels, function(hotel) {
-                        return _c(
-                          "option",
-                          { key: hotel.id, domProps: { value: hotel.id } },
-                          [_vm._v(" " + _vm._s(hotel.name) + " ")]
-                        )
-                      })
-                    ],
-                    2
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _vm.creatingRateMode
-                ? _c(
-                    "button",
-                    {
-                      staticClass:
-                        "w-full bg-gray-500 mt-5 \n                    text-gray-50 \n                    rounded-md p-2\n                    hover:bg-gray-700 focus:outline-none\n                    shadow\n                    focus:ring-2 focus:ring-gray-600 \n                    focus:ring-opacity-50",
-                      attrs: { type: "submit" }
-                    },
-                    [_vm._v("\n        Create\n      ")]
-                  )
-                : _c(
-                    "button",
-                    {
-                      staticClass:
-                        "w-full bg-gray-500 mt-5 \n                    text-gray-50 \n                    rounded-md p-2\n                    hover:bg-gray-700 focus:outline-none\n                    shadow\n                    focus:ring-2 focus:ring-gray-600 \n                    focus:ring-opacity-50",
-                      attrs: { type: "submit" },
-                      on: { click: function($event) {} }
-                    },
-                    [_vm._v("\n        Update\n      ")]
-                  )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
             "div",
             {
               staticClass:
-                "mt-5 justify-start flex w-2/5 text-gray-600 hover:underline"
+                "w-full md:w-2/4 justify-center p-5 border rounded-md shadow-md bg-white"
             },
             [
+              _vm.creatingRateMode
+                ? _c(
+                    "span",
+                    {
+                      staticClass:
+                        "text-lg font-medium uppercase self-center my-5 text-gray-500"
+                    },
+                    [_vm._v("Create Rate")]
+                  )
+                : _c(
+                    "span",
+                    {
+                      staticClass:
+                        "text-lg font-medium uppercase self-center my-5 text-gray-500"
+                    },
+                    [_vm._v("Update Rate")]
+                  ),
+              _vm._v(" "),
               _c(
-                "router-link",
+                "form",
                 {
-                  staticClass:
-                    "text-left  uppercase flex font-semibold items-center",
-                  attrs: { to: "/home" }
+                  staticClass: "mt-5 self-center",
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.createRate()
+                    }
+                  }
                 },
                 [
-                  _c("span", [_vm._v("Create Hotels")]),
-                  _vm._v(" "),
-                  _c("span", [
+                  _c("div", { staticClass: "mb-3" }, [
                     _c(
-                      "svg",
-                      {
-                        staticClass: "h-6 w-6",
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          fill: "none",
-                          viewBox: "0 0 24 24",
-                          stroke: "currentColor"
-                        }
-                      },
-                      [
-                        _c("path", {
-                          attrs: {
-                            "stroke-linecap": "round",
-                            "stroke-linejoin": "round",
-                            "stroke-width": "2",
-                            d:
-                              "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                      "label",
+                      { staticClass: "mb-3", attrs: { for: "startDate" } },
+                      [_vm._v("Start Date ")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.newRate.start_date,
+                            expression: "newRate.start_date"
                           }
-                        })
-                      ]
-                    )
-                  ])
+                        ],
+                        staticClass:
+                          "focus:outline-none \n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
+                        attrs: {
+                          required: "",
+                          type: "date",
+                          name: "startDate",
+                          max: _vm.newRate.end_date
+                        },
+                        domProps: { value: _vm.newRate.start_date },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.newRate,
+                              "start_date",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mb-3" }, [
+                    _c(
+                      "label",
+                      { staticClass: "mb-3", attrs: { for: "endDate" } },
+                      [_vm._v("End Date ")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.newRate.end_date,
+                            expression: "newRate.end_date"
+                          }
+                        ],
+                        staticClass:
+                          "focus:outline-none \n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
+                        attrs: {
+                          required: "",
+                          type: "date",
+                          name: "endDate",
+                          min: _vm.newRate.start_date
+                        },
+                        domProps: { value: _vm.newRate.end_date },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.newRate,
+                              "end_date",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mb-3" }, [
+                    _c(
+                      "label",
+                      { staticClass: "mb-3", attrs: { for: "adultRate" } },
+                      [_vm._v("Adult Rate ")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.newRate.adult_rate,
+                            expression: "newRate.adult_rate"
+                          }
+                        ],
+                        staticClass:
+                          "focus:outline-none \n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
+                        attrs: {
+                          required: "",
+                          type: "number",
+                          name: "adultRate"
+                        },
+                        domProps: { value: _vm.newRate.adult_rate },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.newRate,
+                              "adult_rate",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mb-3" }, [
+                    _c(
+                      "label",
+                      { staticClass: "mb-3", attrs: { for: "childRate" } },
+                      [_vm._v("Child Rate ")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.newRate.child_rate,
+                            expression: "newRate.child_rate"
+                          }
+                        ],
+                        staticClass:
+                          "focus:outline-none \n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
+                        attrs: {
+                          required: "",
+                          type: "number",
+                          name: "adultRate"
+                        },
+                        domProps: { value: _vm.newRate.child_rate },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.newRate,
+                              "child_rate",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mb-3" }, [
+                    _c(
+                      "label",
+                      { staticClass: "mb-3", attrs: { for: "hotel" } },
+                      [_vm._v("Hotel ")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.newRate.hotel_id,
+                              expression: "newRate.hotel_id"
+                            }
+                          ],
+                          staticClass:
+                            "focus:outline-none\n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
+                          attrs: { required: "", type: "", name: "hotel" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.newRate,
+                                "hotel_id",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "option",
+                            {
+                              staticClass: "text-gray-400",
+                              attrs: { disabled: "", selected: "", value: "" }
+                            },
+                            [_vm._v("Please select one")]
+                          ),
+                          _vm._v(" "),
+                          _vm._l(_vm.hotels, function(hotel) {
+                            return _c(
+                              "option",
+                              { key: hotel.id, domProps: { value: hotel.id } },
+                              [_vm._v(" " + _vm._s(hotel.name) + " ")]
+                            )
+                          })
+                        ],
+                        2
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm.creatingRateMode
+                    ? _c(
+                        "button",
+                        {
+                          staticClass:
+                            "w-full bg-gray-500 mt-5 \n                    text-gray-50 \n                    rounded-md p-2\n                    hover:bg-gray-700 focus:outline-none\n                    shadow\n                    focus:ring-2 focus:ring-gray-600 \n                    focus:ring-opacity-50 uppercase",
+                          attrs: { type: "submit" }
+                        },
+                        [_vm._v("\n        Create Rate\n      ")]
+                      )
+                    : _c(
+                        "button",
+                        {
+                          staticClass:
+                            "w-full bg-gray-500 mt-5 \n                    text-gray-50 \n                    rounded-md p-2\n                    hover:bg-gray-700 focus:outline-none\n                    shadow\n                    focus:ring-2 focus:ring-gray-600 \n                    focus:ring-opacity-50 uppercase",
+                          attrs: { type: "submit" }
+                        },
+                        [_vm._v("\n        Update Rate\n      ")]
+                      )
                 ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "mt-5 justify-start flex w-2/5 text-white text-sm"
+                },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass:
+                        "text-left bg-gray-500 border-2 shadow-md border-gray-500 \n                            hover:bg-white hover:text-gray-500 rounded-md \n                            p-2 uppercase flex font-semibold items-center",
+                      attrs: { to: "/home" }
+                    },
+                    [
+                      _c("span", [_vm._v("Create Hotels")]),
+                      _vm._v(" "),
+                      _c("span", [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "h-6 w-6",
+                            attrs: {
+                              xmlns: "http://www.w3.org/2000/svg",
+                              fill: "none",
+                              viewBox: "0 0 24 24",
+                              stroke: "currentColor"
+                            }
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round",
+                                "stroke-width": "2",
+                                d:
+                                  "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                              }
+                            })
+                          ]
+                        )
+                      ])
+                    ]
+                  )
+                ],
+                1
               )
-            ],
-            1
+            ]
           )
         ]
       ),
@@ -15220,234 +15551,250 @@ var render = function() {
         },
         [
           _c(
-            "span",
-            {
-              staticClass:
-                "text-lg font-medium uppercase self-center my-5 text-gray-500"
-            },
-            [_vm._v("Create Hotel")]
-          ),
-          _vm._v(" "),
-          _c(
-            "form",
-            {
-              staticClass: "w-full md:w-2/5 self-center",
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  return _vm.createHotel()
-                }
-              }
-            },
-            [
-              _c("div", { staticClass: "mb-3" }, [
-                _c("label", { staticClass: "mb-3", attrs: { for: "name" } }, [
-                  _vm._v("Hotel Name ")
-                ]),
-                _vm._v(" "),
-                _c("div", [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.newHotel.name,
-                        expression: "newHotel.name"
-                      }
-                    ],
-                    staticClass:
-                      "focus:outline-none \n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
-                    attrs: { required: "", type: "text", name: "name" },
-                    domProps: { value: _vm.newHotel.name },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.newHotel, "name", $event.target.value)
-                      }
-                    }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "mb-3" }, [
-                _c("label", { staticClass: "mb-3", attrs: { for: "name" } }, [
-                  _vm._v("Stars ")
-                ]),
-                _vm._v(" "),
-                _c("div", [
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.newHotel.stars,
-                          expression: "newHotel.stars"
-                        }
-                      ],
-                      staticClass:
-                        "focus:outline-none\n                  focus:ring ring-gray-200 border border-2 \n                  rounded-md w-full p-2",
-                      attrs: { required: "", type: "", name: "name" },
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.newHotel,
-                            "stars",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
-                      }
-                    },
-                    [
-                      _c(
-                        "option",
-                        {
-                          staticClass: "text-gray-400",
-                          attrs: { disabled: "", selected: "", value: "" }
-                        },
-                        [_vm._v("Please select one")]
-                      ),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "3" } }, [
-                        _vm._v("3 Stars")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "4" } }, [
-                        _vm._v("4 Stars")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "5" } }, [
-                        _vm._v("5 Stars")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "7" } }, [
-                        _vm._v("7 Stars")
-                      ])
-                    ]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "mb-3" }, [
-                _c(
-                  "label",
-                  { staticClass: "mb-3", attrs: { for: "address" } },
-                  [_vm._v("Address ")]
-                ),
-                _vm._v(" "),
-                _c("div", [
-                  _c("textarea", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.newHotel.address,
-                        expression: "newHotel.address"
-                      }
-                    ],
-                    staticClass:
-                      "focus:outline-none \n                  focus:ring ring-gray-200 border-2 \n                  rounded-md w-full p-2",
-                    attrs: { name: "address", rows: "5" },
-                    domProps: { value: _vm.newHotel.address },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.newHotel, "address", $event.target.value)
-                      }
-                    }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _vm.creatingHotelMode
-                ? _c(
-                    "button",
-                    {
-                      staticClass:
-                        "w-full bg-gray-500 mt-5 \n                    text-gray-50 \n                    rounded-md p-2\n                    hover:bg-gray-700 focus:outline-none\n                    shadow\n                    focus:ring-2 focus:ring-gray-600 \n                    focus:ring-opacity-50",
-                      attrs: { type: "submit" }
-                    },
-                    [_vm._v("\n        Create\n      ")]
-                  )
-                : _c(
-                    "button",
-                    {
-                      staticClass:
-                        "w-full bg-gray-500 mt-5 \n                    text-gray-50 \n                    rounded-md p-2\n                    hover:bg-gray-700 focus:outline-none\n                    shadow\n                    focus:ring-2 focus:ring-gray-600 \n                    focus:ring-opacity-50",
-                      attrs: { type: "submit" },
-                      on: { click: function($event) {} }
-                    },
-                    [_vm._v("\n        Update\n      ")]
-                  )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
             "div",
             {
               staticClass:
-                "mt-5 justify-start flex w-2/5 text-gray-600 hover:underline"
+                "w-full md:w-2/4 justify-center p-5 border rounded-md shadow-md bg-white"
             },
             [
               _c(
-                "router-link",
+                "span",
                 {
                   staticClass:
-                    "text-left  uppercase flex font-semibold items-center",
-                  attrs: { to: "/home/hotel-rate" }
+                    "text-lg font-medium uppercase self-center my-5 text-gray-500"
+                },
+                [_vm._v("Create Hotel")]
+              ),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  staticClass: "mt-5 self-center",
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.createHotel()
+                    }
+                  }
                 },
                 [
-                  _c("span", [_vm._v("Add Rates")]),
-                  _vm._v(" "),
-                  _c("span", [
+                  _c("div", { staticClass: "mb-3" }, [
                     _c(
-                      "svg",
-                      {
-                        staticClass: "h-5 w-5",
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          viewBox: "0 0 20 20",
-                          fill: "currentColor"
+                      "label",
+                      { staticClass: "mb-3", attrs: { for: "name" } },
+                      [_vm._v("Hotel Name ")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.newHotel.name,
+                            expression: "newHotel.name"
+                          }
+                        ],
+                        staticClass:
+                          "focus:outline-none \n                      focus:ring ring-gray-200 border-2 \n                      rounded-md w-full p-2",
+                        attrs: { required: "", type: "text", name: "name" },
+                        domProps: { value: _vm.newHotel.name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.newHotel, "name", $event.target.value)
+                          }
                         }
-                      },
-                      [
-                        _c("path", {
-                          attrs: {
-                            d:
-                              "M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mb-3" }, [
+                    _c(
+                      "label",
+                      { staticClass: "mb-3", attrs: { for: "name" } },
+                      [_vm._v("Stars ")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.newHotel.stars,
+                              expression: "newHotel.stars"
+                            }
+                          ],
+                          staticClass:
+                            "focus:outline-none\n                      focus:ring ring-gray-200 border border-2 \n                      rounded-md w-full p-2",
+                          attrs: { required: "", type: "", name: "name" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.newHotel,
+                                "stars",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
                           }
-                        }),
-                        _vm._v(" "),
-                        _c("path", {
-                          attrs: {
-                            "fill-rule": "evenodd",
-                            d:
-                              "M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z",
-                            "clip-rule": "evenodd"
+                        },
+                        [
+                          _c(
+                            "option",
+                            {
+                              staticClass: "text-gray-400",
+                              attrs: { disabled: "", selected: "", value: "" }
+                            },
+                            [_vm._v("Please select one")]
+                          ),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "3" } }, [
+                            _vm._v("3 Stars")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "4" } }, [
+                            _vm._v("4 Stars")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "5" } }, [
+                            _vm._v("5 Stars")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "7" } }, [
+                            _vm._v("7 Stars")
+                          ])
+                        ]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mb-3" }, [
+                    _c(
+                      "label",
+                      { staticClass: "mb-3", attrs: { for: "address" } },
+                      [_vm._v("Address ")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.newHotel.address,
+                            expression: "newHotel.address"
                           }
-                        })
-                      ]
-                    )
-                  ])
+                        ],
+                        staticClass:
+                          "focus:outline-none \n                      focus:ring ring-gray-200 border-2 \n                      rounded-md w-full p-2",
+                        attrs: { name: "address", rows: "5" },
+                        domProps: { value: _vm.newHotel.address },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.newHotel,
+                              "address",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm.creatingHotelMode
+                    ? _c(
+                        "button",
+                        {
+                          staticClass:
+                            "w-full bg-gray-500 mt-5 \n                        text-gray-50 \n                        rounded-md p-2\n                        hover:bg-gray-700 focus:outline-none\n                        shadow\n                        focus:ring-2 focus:ring-gray-600 \n                        focus:ring-opacity-50 uppercase",
+                          attrs: { type: "submit" }
+                        },
+                        [_vm._v("\n            submit\n          ")]
+                      )
+                    : _c(
+                        "button",
+                        {
+                          staticClass:
+                            "w-full bg-gray-500 mt-5 \n                        text-gray-50 \n                        rounded-md p-2\n                        hover:bg-gray-700 focus:outline-none\n                        shadow\n                        focus:ring-2 focus:ring-gray-600 \n                        focus:ring-opacity-50 uppercase",
+                          attrs: { type: "submit" }
+                        },
+                        [_vm._v("\n            Update\n          ")]
+                      )
                 ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "mt-5 justify-start flex w-2/5 text-white text-sm"
+                },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass:
+                        "text-left bg-gray-500 border-2 shadow-md border-gray-500 \n                            hover:bg-white hover:text-gray-500 rounded-md \n                            p-2 uppercase flex font-semibold items-center",
+                      attrs: { to: "/home/hotel-rate" }
+                    },
+                    [
+                      _c("span", [_vm._v("Add Rates")]),
+                      _vm._v(" "),
+                      _c("span", [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "h-5 w-5",
+                            attrs: {
+                              xmlns: "http://www.w3.org/2000/svg",
+                              viewBox: "0 0 20 20",
+                              fill: "currentColor"
+                            }
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                d:
+                                  "M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("path", {
+                              attrs: {
+                                "fill-rule": "evenodd",
+                                d:
+                                  "M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z",
+                                "clip-rule": "evenodd"
+                              }
+                            })
+                          ]
+                        )
+                      ])
+                    ]
+                  )
+                ],
+                1
               )
-            ],
-            1
+            ]
           )
         ]
       ),

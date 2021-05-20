@@ -1,8 +1,10 @@
 <template>
   <div class="w-full flex flex-col md:flex-row h-screen bg-gray-50">
     <div class="w-full md:w-1/2 p-5 flex flex-col justify-center items-center border-r">
-      <span class="text-lg font-medium uppercase self-center my-5 text-gray-500">Create Rate</span>
-      <form @submit.prevent="createRate()" class="w-full md:w-2/5 self-center">
+     <div class="w-full md:w-2/4 justify-center p-5 border rounded-md shadow-md bg-white">
+        <span v-if="creatingRateMode" class="text-lg font-medium uppercase self-center my-5 text-gray-500">Create Rate</span>
+        <span v-else class="text-lg font-medium uppercase self-center my-5 text-gray-500">Update Rate</span>
+      <form @submit.prevent="createRate()" class="mt-5 self-center">
         <div class="mb-3">
           <label for="startDate" class="mb-3">Start Date </label>
           <div>
@@ -91,10 +93,10 @@
                       hover:bg-gray-700 focus:outline-none
                       shadow
                       focus:ring-2 focus:ring-gray-600 
-                      focus:ring-opacity-50"
+                      focus:ring-opacity-50 uppercase"
                 v-if="creatingRateMode"
                 >
-          Create
+          Create Rate
         </button>
 
          <button type="submit"
@@ -104,16 +106,19 @@
                       hover:bg-gray-700 focus:outline-none
                       shadow
                       focus:ring-2 focus:ring-gray-600 
-                      focus:ring-opacity-50"
-                @click=""
+                      focus:ring-opacity-50 uppercase"
+                
                 v-else
                 >
-          Update
+          Update Rate
         </button>
       </form>
 
-      <div class="mt-5 justify-start flex w-2/5 text-gray-600 hover:underline">
-        <router-link to="/home" class="text-left  uppercase flex font-semibold items-center">
+      <div class="mt-5 justify-start flex w-2/5 text-white text-sm">
+        <router-link to="/home" 
+                      class="text-left bg-gray-500 border-2 shadow-md border-gray-500 
+                              hover:bg-white hover:text-gray-500 rounded-md 
+                              p-2 uppercase flex font-semibold items-center">
           <span>Create Hotels</span>
           <span>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -122,6 +127,7 @@
           </span>
         </router-link>
       </div>
+     </div>
     </div>  
 
   <div class="w-full md:w-1/2 flex flex-col justify-center ritems-cente">
@@ -205,7 +211,7 @@
 </template>
 
 <script>
-import { rateObj } from '../utils/index.js'
+import { rateObj } from '../utils/index.ts'
 import axios from 'axios'
 import { format, parseISO } from 'date-fns'
 import Skeleton from '../shared/tableSkeleton'
@@ -282,6 +288,7 @@ export default {
           icon: 'info',
           title: message,
           animation: true,
+          showConfirmButton: false,
           position: 'top-right',
           timer: 5000,
           timerProgressBar: true,
@@ -292,9 +299,7 @@ export default {
         })
         
     },
-
-
-     
+   
     deleteRate: function(id) {
       this.$swal({
         title: 'Are you sure?',

@@ -102,4 +102,18 @@ class HotelController extends Controller
               ], 404);
         }
     }
+
+    // public function hotel($id)
+    // {
+    //     if (Hotel::where('id', $id)->exists()) {
+    //         $contact = Hotel::find($id);
+    //         $contact->delete();
+    //         return response()->json(['message' => 'Hotel Deleted']);
+
+    //     }else {
+    //         return response()->json([
+    //             "message" => "Hotel not found"
+    //           ], 404);
+    //     }
+    // }
 }

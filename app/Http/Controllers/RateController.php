@@ -20,7 +20,9 @@ class RateController extends Controller
      */
     public function index()
     {
-        return Rate::orderBy('start_date', 'asc')->get();  //returns values in ascending order
+        return Rate::orderBy('hotel_id', 'asc')
+                    ->orderBy('start_date', 'asc')
+                    ->get();  //returns values in ascending order
 
     }
 
@@ -132,49 +134,74 @@ class RateController extends Controller
      */
     public function search(Request $request)
     {
-        // $start_date = Carbon::parse($request->get('start_date'));
-        // $end_date = Carbon::parse($request->get('end_date'));
-        $start_date = $request->get('start_date');
-        $end_date = $request->get('end_date');
 
-        $period = CarbonPeriod::create($start_date, $end_date);
+        $this->validate($request, [
+            'check_in_date' => 'required',
+            'check_out_date' => 'required',
+            'hotel_id' => 'required',
+            'number_of_adults' => 'required|numeric',
+            'number_of_children' => 'required|numeric'
+        ]);
+
+        $start_date = $request->get('check_in_date');
+        $end_date = $request->get('check_out_date');
+        $hotel_id = $request->get('hotel_id');
+        $number_of_adults = $request->get('number_of_adults');
+        $number_of_children = $request->get('number_of_children');
+
+        $adult_rate_query = '
+                                SUM(
+                                    DATEDIFF(
+                                        if( end_date > ?, ?, end_date ),
+                                        if( start_date < ?, ?, start_date )
+                                    ) * adult_rate
+                                )';
+
+        $total_adult_rate = DB::table('rates')
+                            ->where('hotel_id', '=', $hotel_id )
+                            ->selectRaw(DB::raw($adult_rate_query), 
+                                        [$end_date, $end_date, $start_date, $start_date])
+                            ->where('start_date', '<', $end_date)
+                            ->where('end_date', '>', $start_date)
+                            ->get(); 
+
+        $child_rate_query = '
+                                SUM(
+                                    DATEDIFF(
+                                        if( end_date > ?, ?, end_date ),
+                                        if( start_date < ?, ?, start_date )
+                                    ) * child_rate
+                                )';
+
         
-        // foreach ($period as $date) {
-        //     $date->format('Y-m-d');
-        // }
+        $total_child_rate = DB::table('rates')
+                        ->where('hotel_id', '=', $hotel_id )
+                        ->selectRaw(DB::raw($child_rate_query), 
+                                    [$end_date, $end_date, $start_date, $start_date])
+                        ->where('start_date', '<', $end_date)
+                        ->where('end_date', '>', $start_date)
+                        ->get();
 
-        // $dates = $period->toArray();
-
-        // // $number_of_days = $end_date->diffInDays($start_date);
-        // $allRates = Rate::all();  //returns values in ascending order
+        $db_result = [$total_adult_rate[0], $total_child_rate[0]];
+        $result = [];
         
-        // foreach ($period as $date) {
-        //    foreach ($allRates as $key => $value) {
-        //         $idCats = array_column($cats, 'id');
-        //    }
-        // }
-        // return $allRates;
+        foreach ($db_result as $obj) {
+            foreach ($obj as $key => $value) {
+                $result[] = $value;
+            }
+        }
+        
+        $overall_adults_rate = $result[0] * $number_of_adults;
+        $overall_children_rate = $result[1] * $number_of_children;
+        $overall_total_rate = $overall_adults_rate + $overall_children_rate;
 
-
-        //     $total_adult_rate = DB::table("rates")
-        //   ->selectRaw("sum (datediff(case when ? > start_date then ? else start_date end, case when ? < end_date then ? else end_date end) * adult_rate) as my_value", [$start_date, $start_date, $end_date, $end_date])
-        //             ->where("end_date", ">=", $start_date)
-        //             ->where("start_date", "<=", $end_date)
-        //             ->value('my_value');
-
-        $total_adult_rate = dd(DB::table("rates")
-        ->selectRaw("sum (datediff(case when ? > start_date then ? else start_date end, case when ? < end_date then ? else end_date end) * adult_rate) as my_value", [$start_date, $start_date, $end_date, $end_date])
-                  ->where("end_date", ">=", $start_date)
-                  ->where("start_date", "<=", $end_date)
-                  ->toSql());
-
-        // $total_child_rate = DB::table("rates")
-        //             ->selectRaw("sum (datediff( day, case when $start_date > start_date then $start_date else start_date end, case when $end_date < end_date then $end_date else end_date end) * child_rate)")
-        //             ->where("end_date", ">=", $start_date)
-        //             ->where("start_date", "<=", $end_date)
-        //             ->get();
-
-        return $total_adult_rate;
+        return response()->json([
+            'per_adult_rate' => $result[0],
+            'per_child_rate' => $result[1],
+            'total_adults_rate' => $overall_adults_rate,
+            'total_children_rate' => $overall_children_rate,
+            'total_rate' => $overall_total_rate,
+        ]);
     }
 
     protected function formatDate($date){
